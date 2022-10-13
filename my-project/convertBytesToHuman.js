@@ -14,4 +14,20 @@
 
 export default function convertBytesToHuman(bytes) {
   // your solution goes here
+  if (typeof(bytes) === 'number' && Number(bytes) > 0) {
+    const multiple_of_bytes = ["B", "KB", "MB", "GB", "TB"];
+    const bytes1 = bytes;
+    let count = 0;
+    while (bytes >= 1024) {
+      bytes /= 1024;
+      count += 1;
+    }
+    if (bytes == 1 || count == 0) {
+      return bytes1 / (1024 ** count) + " " + multiple_of_bytes[count];
+    }
+    return (bytes1 / (1024 ** count)).toFixed(2) + " " + multiple_of_bytes[count];
+  }
+  else {
+    return false;
+  }
 }

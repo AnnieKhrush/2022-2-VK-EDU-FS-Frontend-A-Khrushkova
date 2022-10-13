@@ -26,5 +26,20 @@ nonUniqueElements([10, 9, 10, 10, 9, 8]) == [10, 9, 10, 10, 9]
 
 export default function nonUniqueElements(data) {
   // your solution goes here
-  return data
+  let new_map = new Set();
+  let new_data = [];
+  let last_map = new Set();
+  for (let d of data) {
+    if (new_map.has(d)) {
+      last_map.add(d);
+    } else {
+      new_map.add(d)
+    }
+  }
+  for (let i of data) {
+    if (last_map.has(i)) {
+      new_data.push(i);
+    }
+  }
+  return new_data;
 }
