@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "my-project",
   "version": "1.0.0",
   "description": "",
@@ -23,3 +24,9 @@
     "presets": ["@babel/preset-env"]
   }
 }
+=======
+  "dependencies": {
+    "debug": "^4.3.4"
+  }
+}
+>>>>>>> second homework
