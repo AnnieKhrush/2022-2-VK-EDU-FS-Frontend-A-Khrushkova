@@ -14,7 +14,7 @@
             </button>
             <div class="user_account">
                 <div class="user_photo">
-                    <img src="src/mycat.jpg" alt="Фото пользователя">
+                    <img src="../src/mycat.jpg" alt="Фото пользователя">
                 </div>
                 <div class="user_info">
                     <div class="user_name">
@@ -45,7 +45,7 @@
                 </div>
                 <div class="my_message">
                     <div class="content_of_message">
-                        Доброе утро, Персик!
+                        Доброе утро, Персик!!
                     </div>
                     <div class="time_and_check">
                         <div class="time_of_message">
@@ -73,6 +73,11 @@
 
             form.addEventListener('submit', handleSubmit.bind());
             form.addEventListener('key-press', handleKeyPress.bind());
+
+            const getMessages = JSON.parse(localStorage.getItem("db_messages"));
+            getMessages.forEach((newMessage) => {
+                messageBuilder(newMessage);
+            });
 
             function handleSubmit (event) {
                 event.preventDefault();
