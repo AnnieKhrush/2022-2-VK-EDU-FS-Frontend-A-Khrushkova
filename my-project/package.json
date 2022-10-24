@@ -1,5 +1,6 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   "name": "my-project",
   "version": "1.0.0",
   "description": "",
@@ -25,8 +26,13 @@
   }
 }
 =======
+=======
+>>>>>>> 0e7598bbfaa7c07dcb9b6fe86c5c1e925fb8ceef
   "dependencies": {
     "debug": "^4.3.4"
   }
 }
+<<<<<<< HEAD
 >>>>>>> second homework
+=======
+>>>>>>> 0e7598bbfaa7c07dcb9b6fe86c5c1e925fb8ceef

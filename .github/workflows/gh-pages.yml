@@ -10,14 +10,25 @@ jobs:
       with:
         node-version: 16
     - name: Install npm deps
+<<<<<<< HEAD
       working-directory: ./simple-chat
       run: npm i
     - name: Build app
       working-directory: ./simple-chat
+=======
+      working-directory: ./my-project/simple-chat
+      run: npm i
+    - name: Build app
+      working-directory: ./my-project/simple-chat
+>>>>>>> 0e7598bbfaa7c07dcb9b6fe86c5c1e925fb8ceef
       run: npm run build
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+<<<<<<< HEAD
         publish_dir: ./simple-chat/build
         
+=======
+        publish_dir: ./my-project/simple-chat/build
+>>>>>>> 0e7598bbfaa7c07dcb9b6fe86c5c1e925fb8ceef
