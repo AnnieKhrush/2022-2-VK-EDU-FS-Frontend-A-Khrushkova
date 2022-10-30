@@ -114,11 +114,10 @@ img {
 .messages {
     background-color: #F8F8F8;
     width: 100%;
-    padding: 4px;
+    padding: 4px 4px 124px;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-
 }
 
 .my_message {
@@ -191,7 +190,7 @@ img {
     background-color: white;
     align-items: center;
     justify-content: space-between;
-    position: sticky;
+    position: fixed;
     bottom: 0;
 }
 
