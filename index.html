@@ -6,64 +6,68 @@
         <link rel="stylesheet" href="src/index.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
-    <link href="style.css" rel="stylesheet"></head>
+    <link href="index/../style.css" rel="stylesheet"></head>
     <body>
-        <nav class="chat_head">
-            <button class="arrow_button">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            <div class="user_account">
-                <div class="user_photo">
-                    <img src="../src/mycat.jpg" alt="Фото пользователя">
-                </div>
-                <div class="user_info">
-                    <div class="user_name">
-                        Персик
+        <div class="chat_content">
+            <nav class="chat_head">
+                <a href="chat_list.html">
+                    <div class="arrow_button">
+                        <i class="material-icons">arrow_back</i>
                     </div>
-                    <div class="user_last_visit">
-                        был 2 часа назад
+                </a>
+                <div class="user_account">
+                    <div class="user_photo">
+                        <img src="../src/mycat.jpg" alt="Фото пользователя">
+                    </div>
+                    <div class="user_info">
+                        <div class="user_name">
+                            Персик
+                        </div>
+                        <div class="user_last_visit">
+                            был 2 часа назад
+                        </div>
                     </div>
                 </div>
-            </div>
-            <button class="search">
-                <i class="material-icons">search</i>
-            </button>
-            <button class="more_features">
-                <i class="material-icons">more_vert</i>
-            </button>
-        </nav>
+                <div class="search">
+                    <i class="material-icons">search</i>
+                </div>
+                <div class="more_features">
+                    <i class="material-icons">more_vert</i>
+                </div>
+            </nav>
 
-        <form class="form" action="/">
-            <div class="messages">
-                <div class="opponent_message">
-                    <div class="content_of_message">
-                        Мяу!
-                    </div>
-                    <div class="time_of_message">
-                        06:30
-                    </div>
-                </div>
-                <div class="my_message">
-                    <div class="content_of_message">
-                        Доброе утро, Персик!!
-                    </div>
-                    <div class="time_and_check">
+            <form class="form" action="/">
+                <div class="messages">
+                    <div class="opponent_message">
+                        <div class="content_of_message">
+                            Мяу!
+                        </div>
                         <div class="time_of_message">
-                            06:33
+                            06:30
                         </div>
-                        <div class="message_check">
-                            <i class="material-icons">done_all</i>
+                    </div>
+                    <div class="my_message">
+                        <div class="content_of_message">
+                            Доброе утро, Персик!!
+                        </div>
+                        <div class="time_and_check">
+                            <div class="time_of_message">
+                                06:33
+                            </div>
+                            <div class="message_check">
+                                <i class="material-icons">done_all</i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="text_field">
-                <input class="form-input" name="message-text" placeholder="Сообщение" type="text">
-                <button class="attach">
-                    <i class="material-icons">attachment</i>
-                </button>
-            </div>
-        </form>
+                <div class="text_field">
+                    <input class="form-input" name="message-text" placeholder="Сообщение" type="text">
+                    <button class="attach">
+                        <i class="material-icons">attachment</i>
+                    </button>
+                </div>
+            </form>
+        </div>
 
             
         <script>
@@ -134,7 +138,7 @@
                 }
             }
         </script>
-    <script type="text/javascript" src="bundle.js"></script></body>
+    <script type="text/javascript" src="index/../bundle.js"></script></body>
 </html>
 
 
