@@ -13,6 +13,7 @@ module.exports = {
     context: SRC_PATH,
     entry: {
         index: './index.js',
+        chat_list: './chat_list.js',
     },
     output: {
         path: BUILD_PATH,
