@@ -13,16 +13,29 @@ module.exports = {
     context: SRC_PATH,
     entry: {
         index: './index.js',
+        chat_list: './chat_list.js',
     },
     output: {
         path: BUILD_PATH,
-        filename: 'bundle.js'
+        filename: '[name]/../bundle.js'
     },
     module: {
         strictExportPresence: true,
         rules: [
             {
-                test: /\.js$/,
+                test: /index\.js$/,
+                include: SRC_PATH,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['@babel/preset-env']
+                        },
+                    },
+                ],
+            },
+            {
+                test: /chat_list\.js$/,
                 include: SRC_PATH,
                 use: [
                     {
@@ -54,15 +67,33 @@ module.exports = {
                     },
                 ],
             },
+            {
+                test: /chat_list\.css$/,
+                include: SRC_PATH,
+                use: [
+                    {
+                        loader: MiniCSSExtractPlugin.loader,
+                    },
+                    {
+                        loader: 'css-loader',
+                    },
+                ],
+            },
         ],
     },
     plugins: [
         new MiniCSSExtractPlugin({
-            filename: 'style.css',
+            filename: '[name]/../style.css',
         }),
         new HTMLWebpackPlugin({
             filename: 'index.html',
-            template: './index.html'
+            template: './index.html',
+            chunks: ['index'],
+        }),
+        new HTMLWebpackPlugin({
+            filename: 'chat_list.html',
+            template: './chat_list.html',
+            chunks: ['chat_list'],
         })
     ]
 };

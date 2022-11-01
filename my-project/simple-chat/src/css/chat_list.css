@@ -1,0 +1,150 @@
+.chats_list {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.menu .material-icons, .search_chat .material-icons{
+    background-color: #8E24AA;
+    color:white;
+    border: none;
+    flex-grow: 1;
+    padding: 0 20px;
+}
+
+.app_name {
+    font-size: 60px;
+    color: white;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    flex-grow: 6;
+    margin-left: 40px;
+}
+
+.chats {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    margin: 0;
+    padding: 0;
+}
+
+.chat {
+    background-color: white;
+    align-self: flex-start;
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+
+    width: 100%;
+    margin: 0;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat_photo {
+    padding-left: 30px;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.chat_info {
+    height: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 4px solid #E6E6E6;
+    margin: 0;
+    padding: 10px 0;
+}
+
+.chat_info_text {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 5;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0;
+
+}
+
+.chat_name, .last_message {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: normal;
+    width: 100%;
+    margin: 5px 0;
+}
+
+.chat_name {
+    color: black;
+    font-size: 45px;  
+}
+
+.last_message {
+    color: #B3B3B3;
+    font-size: 40px;
+}
+
+.time_and_status {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    padding-right: 30px;
+    padding-top: 20px;
+}
+
+.message_time {
+    font-size: 35px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    color: #B3B3B3;
+}
+
+.chat_status .material-icons {
+    font-size: 52px; 
+    font-weight: 400;
+    color: #8E24AA;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.chat_status_unread, .chat_status_mentioned {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 35px;
+    margin-top: 10px;
+    padding: 8px 16px;
+    border-radius: 25px;
+}
+
+.chat_status_unread {
+    background-color: #8E24AA;
+    color: white;
+}
+
+.chat_status_mentioned {
+    background-color: #F9D667;
+    color: black;
+}
+
+.create_chat .material-icons {
+    font-size: 68px;
+    color: #72612E;
+    background-color: #F9D667;
+    border-radius: 50%;
+    padding: 40px;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    box-shadow: 7px 12px 15px #BABABA;
+}
