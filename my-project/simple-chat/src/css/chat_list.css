@@ -5,12 +5,47 @@
     padding: 0;
 }
 
-.menu .material-icons, .search_chat .material-icons{
+
+.menu .material-icons, .search_chat .material-icons {
     background-color: #8E24AA;
     color:white;
     border: none;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
     flex-grow: 1;
-    padding: 0 20px;
+    padding: 10px;
+    transition: background-color .5s, color .5s;
+}
+
+
+.menu .material-icons:hover, .search_chat .material-icons:hover {
+    background-color: #dda1ee;
+    color: #8E24AA;
+    animation: pulse 2s infinite;
+}
+
+
+@keyframes pulse {
+    0% {
+        -moz-box-shadow: 0 0 0 0 rgba(221, 161, 238, .4);
+        box-shadow: 0 0 0 0 rgba(221, 161, 238, .4);
+    }
+    70% {
+        -moz-box-shadow: 0 0 0 10px rgba(221, 161, 238, 0);
+        box-shadow: 0 0 0 10px rgba(221, 161, 238, 0);
+    }
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(221, 161, 238, 0);
+        box-shadow: 0 0 0 0 rgba(221, 161, 238, 0);
+    }
+}
+
+
+.menu .material-icons:active, .search_chat .material-icons:active {
+    animation: none;
+    background-color: #F3E5F5;
+    color: #8E24AA;
 }
 
 .app_name {
@@ -28,7 +63,7 @@
     flex-direction: column;
     overflow-y: scroll;
     margin: 0;
-    padding: 0;
+    padding: 164px 0 0;
 }
 
 .chat {
@@ -37,15 +72,26 @@
     display: flex;
     flex-direction: row;
     padding: 0;
-
+    height: 160px;
     width: 100%;
     margin: 0;
     justify-content: space-between;
     align-items: center;
+    transition: background-color .5s;
+}
+
+
+.chat:hover {
+    background-color: #E6E6E6;
+}
+
+.chat:active {
+    background-color: #F3E5F5;
+
 }
 
 .chat_photo {
-    padding-left: 30px;
+    padding: 0 20px;
     margin: 0;
     flex-grow: 1;
 }
@@ -58,6 +104,7 @@
     border-bottom: 4px solid #E6E6E6;
     margin: 0;
     padding: 10px 0;
+    justify-content: space-between;
 }
 
 .chat_info_text {
@@ -101,6 +148,7 @@
     justify-content: center;
     padding-right: 30px;
     padding-top: 20px;
+    right: 0;
 }
 
 .message_time {
@@ -147,4 +195,13 @@
     bottom: 50px;
     right: 50px;
     box-shadow: 7px 12px 15px #BABABA;
+    transition: box-shadow .5s;
+}
+
+.create_chat .material-icons:hover {
+    box-shadow: 12px 17px 15px #c0950a;
+}
+
+.create_chat .material-icons:active {
+    box-shadow: 12px 17px 15px #c0950a;
 }
