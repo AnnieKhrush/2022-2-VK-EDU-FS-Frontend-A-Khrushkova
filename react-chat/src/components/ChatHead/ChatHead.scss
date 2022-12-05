@@ -1,0 +1,14 @@
+.chat_head {
+    background-color: #8E24AA;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 0;
+}

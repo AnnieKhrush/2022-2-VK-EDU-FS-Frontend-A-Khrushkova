@@ -1,0 +1,70 @@
+.my_message {
+    background-color: #F3E5F5;
+    align-self: flex-end;
+    animation-name: slideright, pulse;
+    animation-duration: 1.5s, 2s;
+}
+
+@keyframes slideright {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 100%;
+        -moz-box-shadow: 0 0 0 0 rgba(221, 161, 238, 0);
+    }
+}
+
+.my_message, .opponent_message {
+    max-width: 75%;
+    border: 2px solid #D0C8D2;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 2px;
+    padding: 10px 10px 2px 10px;
+    min-height: 60px;
+    justify-content: space-between;
+    overflow-wrap: break-word;
+    flex-wrap: wrap;
+    width: max-content;
+}
+.opponent_message {
+    background-color:white;
+    align-self: flex-start;
+    animation: slideleft 1s;
+}
+
+.content_of_message {
+    width: 100%;
+    font-size: 20px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    color: black;
+    margin: 2px 2px 4px 2px;
+}
+
+.time_of_message {
+    font-size: 12px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.4);
+    margin-right: 4px;
+}
+
+.time_and_check {
+    height: 16px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 4px;
+    align-items: center;
+}
+
+.message_check {  
+    color: #8E24AA;
+    padding-top: 3px;
+    font-size: 12px;
+}

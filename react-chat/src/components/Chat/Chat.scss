@@ -1,0 +1,121 @@
+.chat {
+    background-color: white;
+    align-self: flex-start;
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    height: 70px;
+    width: 100%;
+    margin: 0;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color .5s;
+}
+
+
+.chat:hover {
+    background-color: #E6E6E6;
+}
+
+.chat:active {
+    background-color: #F3E5F5;
+
+}
+
+.chat_photo {
+    padding: 0 10px;
+    margin: 0;
+    flex: 1 6 auto;
+}
+
+.chat_info {
+    height: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2px solid #E6E6E6;
+    margin: 0;
+    padding: 5px 0;
+    justify-content: space-between;
+    flex: 6 1 auto;
+}
+
+.chat_info_text {
+    height: 100%;
+    width: 70%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0;
+    margin-right: 5px;
+
+}
+
+.chat_name, .last_message {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: normal;
+    width: 100%;
+    margin: 3px 0;
+}
+
+.chat_name {
+    color: black;
+    font-size: 20px;  
+}
+
+.last_message {
+    color: #B3B3B3;
+    font-size: 17px;
+}
+
+.time_and_status {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    padding-right: 10px;
+    padding-top: 8px;
+    right: 0;
+}
+
+.message_time {
+    font-size: 15px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    color: #B3B3B3;
+}
+
+.unread, .read {
+    font-weight: 400;
+    color: #8E24AA;
+    padding: 0;
+    margin-top: 6px;
+    height: 24px;
+    width: 24px;
+    padding: 2px;
+}
+
+.unread_many, .mentioned {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    margin-top: 6px;
+    padding: 2px 6px;
+    border-radius: 25px;
+}
+
+.unread_many {
+    background-color: #8E24AA;
+    color: white;
+}
+
+.mentioned {
+    background-color: #F9D667;
+    color: black;
+}

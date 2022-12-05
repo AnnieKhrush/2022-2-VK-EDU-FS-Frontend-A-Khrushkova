@@ -1,0 +1,11 @@
+.messages {
+    background-color: #F8F8F8;
+    height: min-content;
+    width: 100%;
+    margin: 0;
+    border: none;
+    padding: 72px 4px 62px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
