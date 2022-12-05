@@ -4,7 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 //import AttachmentIcon from '@mui/icons-material/Attachment';
 import './PageChat.scss';
-import mycat from '../../mycat.jpg';
+import mycat from '../../photos/mycat.jpg';
 import {Button} from '../../components';
 import {ChatHead} from '../../components';
 import {UserAccount} from '../../components';
