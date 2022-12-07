@@ -97,7 +97,7 @@ a {
 
 
 .user_account {
-    margin-left: 10px;
+    margin-left: 5px;
     display: flex;
     flex-direction: row;
     flex-grow: 3;
@@ -108,12 +108,12 @@ a {
 
 .user_photo {
     flex: 1 40 auto;
-    padding: 0 10px 0 20px;
+    padding: 4px 10px 4px 20px;
 }
 
 img {
-    height: 40px;
-    width: 40px;
+    height: 45px;
+    width: 45px;
     padding: 0;
     margin: 0;
     overflow: hidden;

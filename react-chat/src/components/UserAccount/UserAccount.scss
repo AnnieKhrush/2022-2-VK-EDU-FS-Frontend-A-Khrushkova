@@ -1,0 +1,51 @@
+.user_account {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 70%;
+    flex-grow: 0.8;
+}
+
+.user_photo {
+    flex: 1 20 auto;
+    padding: 4px 10px;
+}
+
+img {
+    height: 45px;
+    width: 45px;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.user_info {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    flex: 20 1 auto;
+    justify-content: center;
+    align-items: flex-start;
+    align-self: center;
+    padding: 0;
+}
+
+.user_name, .user_last_visit {
+    color: white;
+    font-family: Helvetica, Arial, sans-serif;
+    margin-bottom: 2px;
+}
+
+.user_name {
+    font-size: 22px;
+    font-weight: 400;
+}
+
+.user_last_visit {
+    font-size: 15px;
+    font-weight: 100;
+    opacity: 45%;
+    margin-top: 2px;
+}
