@@ -6,6 +6,10 @@ export function Form(props) {
 
     const [value, setValue] = useState('')
 
+    const style = {
+        fontSize: '28px'
+    }
+
     function handleSubmit(event) {
         event.preventDefault();
         if (value === '') {
@@ -34,9 +38,9 @@ export function Form(props) {
         <form className='form' action="/" onSubmit={handleSubmit}>
             <div className='text_field'>
                 <input className='form-input' value={value} name="message-text" placeholder="Сообщение" type="text" onChange={handleChange}/>
-                    <div className='attach'>
-                        <AttachmentIcon/>
-                    </div>
+                <div className='attach'>
+                    <AttachmentIcon style={ style } />
+                </div>
             </div>
         </form>
     )

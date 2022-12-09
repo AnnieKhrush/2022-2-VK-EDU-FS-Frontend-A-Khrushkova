@@ -1,0 +1,1 @@
+export {HeadName} from './HeadName';

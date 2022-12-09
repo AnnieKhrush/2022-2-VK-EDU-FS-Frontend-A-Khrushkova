@@ -1,0 +1,38 @@
+.button {
+    background-color: #8E24AA;
+    color:white;
+    border: none;
+    border-radius: 50%;
+    padding: 6px;
+    height: 40px;
+    width: 40px;
+    margin: 4px;
+    transition: background-color .5s, color .5s;
+}
+
+
+.button:hover {
+    background-color: #dda1ee;
+    color: #8E24AA;
+    animation: pulse 2s infinite;
+}
+
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(221, 161, 238, .4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(221, 161, 238, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(221, 161, 238, 0);
+    }
+}
+
+
+.button:active {
+    animation: none;
+    background-color: #F3E5F5;
+    color: #8E24AA;
+}

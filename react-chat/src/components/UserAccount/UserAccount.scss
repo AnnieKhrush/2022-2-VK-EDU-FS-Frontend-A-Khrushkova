@@ -3,8 +3,14 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    width: 70%;
+    width: 100%;
     flex-grow: 0.8;
+}
+
+.link_user {
+    flex-grow: 0.7;
+    width: 70%;
+    text-decoration: none;
 }
 
 .user_photo {

@@ -1,24 +1,3 @@
-html {
-    box-sizing: border-box;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-    background-color: #F8F8F8;
-}
-
 .chats_list {
     height: 100%;
     width: 100%;
@@ -26,56 +5,6 @@ body {
     padding: 0;
 }
 
-.menu, .search_chat {
-    background-color: #8E24AA;
-    color:white;
-    border: none;
-    border-radius: 50%;
-    padding: 6px;
-    height: 40px;
-    width: 40px;
-    margin: 4px;
-    transition: background-color .5s, color .5s;
-}
-
-
-.menu:hover, .search_chat:hover {
-    background-color: #dda1ee;
-    color: #8E24AA;
-    animation: pulse 2s infinite;
-}
-
-
-@keyframes pulse {
-    0% {
-        -moz-box-shadow: 0 0 0 0 rgba(221, 161, 238, .4);
-        box-shadow: 0 0 0 0 rgba(221, 161, 238, .4);
-    }
-    70% {
-        -moz-box-shadow: 0 0 0 10px rgba(221, 161, 238, 0);
-        box-shadow: 0 0 0 10px rgba(221, 161, 238, 0);
-    }
-    100% {
-        -moz-box-shadow: 0 0 0 0 rgba(221, 161, 238, 0);
-        box-shadow: 0 0 0 0 rgba(221, 161, 238, 0);
-    }
-}
-
-
-.menu:active, .search_chat:active {
-    animation: none;
-    background-color: #F3E5F5;
-    color: #8E24AA;
-}
-
-.app_name {
-    font-size: 25px;
-    color: white;
-    font-family: Helvetica, Arial, sans-serif;
-    font-weight: 400;
-    flex-grow: 1;
-    margin-left: 20px;
-}
 
 .chats {
     width: 100%;
@@ -107,4 +36,8 @@ body {
 
 .create_chat:active {
     box-shadow: 3px 6px 7px #c0950a;
+}
+
+.link_chat {
+    text-decoration: none;
 }

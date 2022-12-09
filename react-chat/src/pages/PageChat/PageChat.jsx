@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
+import { Link } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SearchIcon from '@mui/icons-material/Search';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-//import AttachmentIcon from '@mui/icons-material/Attachment';
 import './PageChat.scss';
 import mycat from '../../photos/mycat.jpg';
 import {Button} from '../../components';
@@ -26,26 +26,31 @@ export function PageChat(props) {
         fontSize: '28px'
     }
 
+
     return (
         <div className='chat_content'>
             <ChatHead>
-                <Button name={'arrow_button'} onClick={() => {props.Change('PageChatList')}}>
-                    <ArrowBackIcon style={style}/>
-                </Button>
-                <UserAccount
-                    user_photo={mycat} 
-                    username={'Персик'} 
-                    last_visit={'Был 2 часа назад'}
-                />
-                <Button name={'search'} onClick={() => {}}>
+                <Link to='/chats'>
+                    <Button>
+                        <ArrowBackIcon style={style}/>
+                    </Button>
+                </Link>
+                <Link to='/user/edit' className='link_user'>
+                    <UserAccount
+                        user_photo={mycat} 
+                        username={'Персик'} 
+                        last_visit={'Был 2 часа назад'}
+                    />
+                </Link>
+                <Button>
                     <SearchIcon style={style}/>
                 </Button>
-                <Button name='more_features' onClick={() => {}}>
+                <Button>
                     <MoreVertIcon style={style}/>
                 </Button>
             </ChatHead>
-            <Messages messages={messages}/>
-            <Form getMessages={getMessages}/>
+            <Messages messages={messages} />
+            <Form getMessages={getMessages} />
         </div>
     )
 }
