@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './Form.scss';
 import AttachmentIcon from '@mui/icons-material/Attachment';
 

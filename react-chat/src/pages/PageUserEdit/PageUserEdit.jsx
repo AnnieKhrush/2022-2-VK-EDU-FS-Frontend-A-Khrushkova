@@ -40,9 +40,9 @@ export function PageUserEdit(props) {
                     <img src={mycat} alt="Фото пользователя" />
                     <CameraAltIcon className='camera' style={cameraStyle} />
                 </div>
-                <EditProfileForm user_photo={mycat} form_name={'full_name'} input_name={'full-name-input'} name={"full_name"} value={'Персик'} place={"Full Name"} />
-                <EditProfileForm form_name={'username'} input_name={'username-input'} name={"username"} value={'@the_best_cat'} place={"Username"} info={'Minimum lenght is 5 characters'} />
-                <EditProfileForm form_name={'bio'} input_name={'bio-input'} name={"bio"} value={'Котик'} place={"Bio"} info={'Any details about you'} />
+                <EditProfileForm user_photo={mycat} form_name={'full_name'} input_name={'full-name-input'} name={"full_name"} place={"Full Name"} fill_field={'Персик'}/>
+                <EditProfileForm form_name={'username'} input_name={'username-input'} name={"username"} place={"Username"} info={'Minimum lenght is 5 characters'} fill_field={'@the_best_cat'} />
+                <EditProfileForm form_name={'bio'} input_name={'bio-input'} name={"bio"} place={"Bio"} info={'Any details about you'} fill_field={'Котик'} />
             </div>
         </div>
     )
