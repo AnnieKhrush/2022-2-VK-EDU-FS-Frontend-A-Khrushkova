@@ -12,7 +12,7 @@ class App extends React.Component {
     return (
       <HashRouter>
         <Routes>
-          <Route path='/chats' element={<PageChatList />} />
+          <Route path='/' element={<PageChatList />} />
           <Route path='/chat/1' element={<PageChat />} style={{backgroundColor: '#F8F8F8'}} />
           <Route path='/user/edit' element={<PageUserEdit />} />
         </Routes>

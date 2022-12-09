@@ -30,7 +30,7 @@ export function PageChat(props) {
     return (
         <div className='chat_content'>
             <ChatHead>
-                <Link to='/chats'>
+                <Link to='/'>
                     <Button>
                         <ArrowBackIcon style={style}/>
                     </Button>
