@@ -5,3 +5,5 @@ export * from './Message';
 export * from './Form';
 export * from './Messages';
 export * from './Chat';
+export * from './HeadName';
+export * from './EditProfileForm';

@@ -1,16 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import EditIcon from '@mui/icons-material/Edit';
-//import AttachmentIcon from '@mui/icons-material/Attachment';
 import './PageChatList.scss';
 import mycat from '../../photos/mycat.jpg';
 import polina from '../../photos/polina.jpg';
 import photonics from '../../photos/photonics.jpg';
 import kittens from '../../photos/kittens.jpg';
-import {Button} from '../../components';
-import {ChatHead} from '../../components';
-import {Chat} from '../../components';
+import { Button } from '../../components';
+import { ChatHead } from '../../components';
+import { Chat } from '../../components';
+import { HeadName } from '../../components';
 
 
 export function PageChatList(props) {
@@ -22,25 +23,31 @@ export function PageChatList(props) {
     return (
         <div className='chats_list'>
             <ChatHead>
-                <Button name={'menu'} onClick={() => {}}>
+                <Button>
                     <MenuIcon style={style}/>
                 </Button>
-                <div className='app_name'>
-                    Messenger
-                </div>
-                <Button name={'search'} onClick={() => {}}>
+                <HeadName name={'Messenger'} />
+                <Button>
                     <SearchIcon style={style}/>
                 </Button>
             </ChatHead>
             <div className='chats'>
-                <Chat photo={mycat} name={'Персик'} last_message={'мяяяяяяяяяяяяяяяяя'} time={'06:35'} status={'read'} onClick={() => {props.Change('PageChat')}} />
-                <Chat photo={polina} name={'Полина'} last_message={'Привет, ты как?'} time={'15:15'} status={'unread'} />
-                <Chat photo={photonics} name={'Чат группы'} last_message={'ну что, где все? на сколько все опоздают??'} time={'15:10'} status={'unread_many'} number={'99'} />
-                <Chat photo={kittens} name={'Котята'} last_message={'У меня котенок мяукает уже час, это норм?'} time={'15:05'} status={'mentioned'} number={'@ 199'} />
+                <Link to={'/chat/1'} className='link_chat' >
+                    <Chat photo={mycat} name={'Персик'} last_message={'мяяяяяяяяяяяяяяяяя'} time={'06:35'} status={'read'} />
+                </Link>
+                <Link to={'/chat/2'} className='link_chat' >
+                    <Chat photo={polina} name={'Полина'} last_message={'Привет, ты как?'} time={'15:15'} status={'unread'} />
+                </Link>
+                <Link to={'/chat/3'} className='link_chat' >
+                    <Chat photo={photonics} name={'Чат группы'} last_message={'ну что, где все? на сколько все опоздают??'} time={'15:10'} status={'unread_many'} number={'99'} />
+                </Link>
+                <Link to={'/chat/4'} className='link_chat' >
+                    <Chat photo={kittens} name={'Котята'} last_message={'У меня котенок мяукает уже час, это норм?'} time={'15:05'} status={'mentioned'} number={'@ 199'} />
+                </Link>
             </div>
-            <Button name={'create_chat'} onClick={() => {}}>
+            <div className='create_chat'>
                 <EditIcon style={style} />
-            </Button>
+            </div>
         </div>
     )
 }

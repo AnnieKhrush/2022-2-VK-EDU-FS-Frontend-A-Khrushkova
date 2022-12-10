@@ -1,0 +1,45 @@
+.info_field {
+    margin: 0 10px 25px;
+    width: 90%;
+}
+
+.full_name, .username, .bio {
+    background-color: #EDEDED;
+    border-bottom: 3px solid #A1A1A1;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    padding: 4px;
+}
+
+.full_name, .username {
+    height: 60px;
+}
+
+.bio {
+    height: 120px;
+}
+
+.full-name-input, .username-input, .bio-input {
+    background-color: #EDEDED;
+    width: max-content;
+    font-size: 20px;
+    line-height: 30px;
+    padding: 0;
+}
+
+.field_title { 
+    color: #A3A3A3;
+    font-size: 15px;   
+}
+
+.input_field {
+    font-family: Helvetica, Arial, sans-serif;
+    margin: 5px 10px;
+}
+
+.details {
+    font-family: Helvetica, Arial, sans-serif;
+    margin: 6px 10px;
+    color: #A3A3A3;
+    font-size: 15px; 
+}

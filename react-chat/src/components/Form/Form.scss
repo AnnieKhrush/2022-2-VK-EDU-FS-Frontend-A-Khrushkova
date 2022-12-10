@@ -19,7 +19,7 @@
     position: fixed;
 }
 
-input[type=text] {
+.form-input {
     font-size: 20px;
     font-family: Helvetica, Arial, sans-serif;
     font-weight: 400;
@@ -50,6 +50,12 @@ input {
     background-color: white;
     flex-grow: 2;
     color: #999999;
+    border-radius: 50%;
+    padding: 6px;
+    height: 40px;
+    width: 40px;
+    margin: 4px;
+    transition: background-color .5s, color .5s;
 }
 
 

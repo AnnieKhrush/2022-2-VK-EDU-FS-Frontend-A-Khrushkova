@@ -1,28 +1,27 @@
-import React from 'react'
-import {PageChat} from './pages/PageChat';
-import {PageChatList} from './pages/PageChatList';
+import React from 'react';
+import './App.css';
+import { HashRouter, Routes, Route } from 'react-router-dom';
+import { PageChat } from './pages/PageChat';
+import { PageChatList } from './pages/PageChatList';
+import { PageUserEdit } from './pages/PageUserEdit';
+
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      page: PageChat,
-    };
-  }
-
-  handleChange(page) {
-    if (page === 'PageChatList') {
-      this.setState({page: PageChatList});
-    } else {
-      this.setState({page: PageChat});
-    }
-  }
 
   render() {
     return (
-      <this.state.page Change={(page) => {this.handleChange(page)}} />
+      <HashRouter>
+        <Routes>
+          <Route path='/' element={<PageChatList />} />
+          <Route path='/chat/1' element={<PageChat />} style={{backgroundColor: '#F8F8F8'}} />
+          <Route path='/user/edit' element={<PageUserEdit />} />
+        </Routes>
+      </HashRouter>
     )
   }
 }
 
 export default App;
+
+//      <PageUserEdit />
+//      <this.state.page Change={(page) => {this.handleChange(page)}} />
