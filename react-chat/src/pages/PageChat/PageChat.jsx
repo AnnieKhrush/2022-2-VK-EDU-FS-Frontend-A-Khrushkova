@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+import React, {useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SearchIcon from '@mui/icons-material/Search';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -14,13 +14,43 @@ import {Messages} from '../../components';
 
 export function PageChat(props) {
 
-    const [messages, setMessages] = useState(() => {const begin_state=localStorage.getItem("db_messages") ? JSON.parse(localStorage.getItem("db_messages")) : [];
-    return begin_state;})
+    const params = useParams();
+    console.log(params);
 
-    function getMessages() {
-        const get_messages = localStorage.getItem("db_messages") ? JSON.parse(localStorage.getItem("db_messages")) : [];
-        setMessages(get_messages)
-    }
+    const [messages, setMessages] = useState([])
+    const [info, setInfo] = useState('')
+
+
+    useEffect(() => {
+        fetch(`/chats/${params.id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            setInfo(data);
+        })
+    }, [params.id])
+
+
+    useEffect(() => {
+        const pollItems = () => {
+
+            fetch(`/chats/message/list/${params.id}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => setMessages(data.reverse()))
+        }
+        const time = setInterval(() => pollItems(), 1000);
+        return () => clearInterval(time);
+      }, [params.id]);
+
 
     const style = {
         fontSize: '28px'
@@ -35,10 +65,10 @@ export function PageChat(props) {
                         <ArrowBackIcon style={style}/>
                     </Button>
                 </Link>
-                <Link to='/user/edit' className='link_user'>
+                <Link to={`/user/edit/${params.id}`} className='link_user'>
                     <UserAccount
-                        user_photo={mycat} 
-                        username={'Персик'} 
+                        user_photo={mycat}
+                        username={info.chat_title}
                         last_visit={'Был 2 часа назад'}
                     />
                 </Link>
@@ -49,8 +79,17 @@ export function PageChat(props) {
                     <MoreVertIcon style={style}/>
                 </Button>
             </ChatHead>
-            <Messages messages={messages} />
-            <Form getMessages={getMessages} />
+            <Messages messages={messages}/>
+            <Form  />
         </div>
     )
 }
+
+
+//const [messages, setMessages] = useState(() => {const begin_state=localStorage.getItem("db_messages") ? JSON.parse(localStorage.getItem("db_messages")) : [];
+//    return begin_state;})
+
+//    function getMessages() {
+//        const get_messages = localStorage.getItem("db_messages") ? JSON.parse(localStorage.getItem("db_messages")) : [];
+//        setMessages(get_messages)
+//    }

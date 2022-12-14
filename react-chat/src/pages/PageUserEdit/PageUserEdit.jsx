@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import DoneIcon from '@mui/icons-material/Done';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
@@ -13,6 +13,7 @@ import { EditProfileForm } from '../../components';
 
 export function PageUserEdit(props) {
 
+    const params = useParams();
 
     const style = {
         fontSize: '28px'
@@ -25,7 +26,7 @@ export function PageUserEdit(props) {
     return (
         <div className='user_edit'>
             <ChatHead>
-                <Link to='/chat/1'>
+                <Link to={`/chat/${params.id}`}>
                     <Button>
                         <ArrowBackIcon style={style}/>
                     </Button>
