@@ -49,7 +49,7 @@ export function PageChat(props) {
         }
         const time = setInterval(() => pollItems(), 1000);
         return () => clearInterval(time);
-      }, [params.id]);
+      }, []);
 
 
     const style = {
@@ -65,7 +65,7 @@ export function PageChat(props) {
                         <ArrowBackIcon style={style}/>
                     </Button>
                 </Link>
-                <Link to='/user/edit' className='link_user'>
+                <Link to={`/user/edit/${params.id}`} className='link_user'>
                     <UserAccount
                         user_photo={mycat}
                         username={info.chat_title}

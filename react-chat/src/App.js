@@ -18,7 +18,7 @@ class App extends React.Component {
           <Route path='/' element={<PageChatList />} />
           <Route path='/chat/:id' element={<PageChat />} style={{backgroundColor: '#F8F8F8'}} />
           <Route path='/chat/general' element={<PageChatGeneral/>} style={{backgroundColor: '#F8F8F8'}} />
-          <Route path='/user/edit' element={<PageUserEdit />} />
+          <Route path='/user/edit/:id' element={<PageUserEdit />} />
         </Routes>
       </HashRouter>
     )
