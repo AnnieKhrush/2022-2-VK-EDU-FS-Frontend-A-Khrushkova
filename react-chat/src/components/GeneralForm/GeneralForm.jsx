@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import './Form.scss';
+import './GeneralForm.scss';
 import AttachmentIcon from '@mui/icons-material/Attachment';
 
-export function Form(props) {
+export function GeneralForm(props) {
 
     const [value, setValue] = useState('')
 
@@ -11,19 +10,16 @@ export function Form(props) {
         fontSize: '28px'
     }
 
-    const params = useParams();
-    console.log(params);
-
     function handleSubmit(event) {
         event.preventDefault();
         if (value === '') {
             return;
         } else {
             let newMessage = {
-                message: value,
-                message_in_chat: params.id
+                text: value,
+                author: 'Anya'
             };
-            fetch('/chats/message/create/', {
+            fetch('https://tt-front.vercel.app/message', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -32,6 +28,7 @@ export function Form(props) {
             })
             .then(response => {response.json(); console.log(response)})
             .then(newMessage => console.log(newMessage))
+            
         }
         setValue('');
         
@@ -53,9 +50,3 @@ export function Form(props) {
     )
     
 }
-
-
-//let messagesStorage = localStorage.getItem("db_messages") ? JSON.parse(localStorage.getItem("db_messages")) : [];
-//messagesStorage.push(newMessage)
-//localStorage.setItem("db_messages" , JSON.stringify(messagesStorage));
-//props.getMessages();

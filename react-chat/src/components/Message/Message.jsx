@@ -25,9 +25,12 @@ export function Message(props) {
         }
     }
  
-    if (props.owner === 'me') {
+    if (props.owner === 'me' || props.owner === 'Anya') {
         return (
             <div className='my_message'>
+                <div className='author'>
+                    {props.owner}
+                </div>
                 <div className='content_of_message'>
                     {props.message}
                 </div>
@@ -42,6 +45,9 @@ export function Message(props) {
     } else {
         return (
             <div className='opponent_message'>
+                <div className='author'>
+                    {props.owner}
+                </div>
                 <div className='content_of_message'>
                     {props.message}
                 </div>

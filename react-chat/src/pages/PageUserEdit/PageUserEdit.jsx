@@ -25,7 +25,7 @@ export function PageUserEdit(props) {
     return (
         <div className='user_edit'>
             <ChatHead>
-                <Link to='/chat/1'>
+                <Link to='/chat/'>
                     <Button>
                         <ArrowBackIcon style={style}/>
                     </Button>

@@ -1,19 +1,23 @@
 import React from 'react';
 import './App.css';
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route, useParams } from 'react-router-dom';
 import { PageChat } from './pages/PageChat';
-import { PageChatList } from './pages/PageChatList';
-import { PageUserEdit } from './pages/PageUserEdit';
+import { PageChatList } from './pages';
+import { PageUserEdit } from './pages';
+import { PageChatGeneral } from './pages/PageChatGeneral';
 
 
 class App extends React.Component {
 
+
   render() {
+
     return (
       <HashRouter>
         <Routes>
           <Route path='/' element={<PageChatList />} />
-          <Route path='/chat/1' element={<PageChat />} style={{backgroundColor: '#F8F8F8'}} />
+          <Route path='/chat/:id' element={<PageChat />} style={{backgroundColor: '#F8F8F8'}} />
+          <Route path='/chat/general' element={<PageChatGeneral/>} style={{backgroundColor: '#F8F8F8'}} />
           <Route path='/user/edit' element={<PageUserEdit />} />
         </Routes>
       </HashRouter>

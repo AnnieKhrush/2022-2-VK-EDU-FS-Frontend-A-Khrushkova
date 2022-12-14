@@ -1,5 +1,4 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import EditIcon from '@mui/icons-material/Edit';
@@ -20,6 +19,75 @@ export function PageChatList(props) {
         fontSize: '28px'
     }
 
+
+    function Chats() {
+
+        let [chats, setChats] = useState([]);
+        let [lastgmessage, setLastgmessage] = useState({})
+
+
+        const pollItems = () => {
+            fetch('/chats/list/1', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                setChats(data);
+            })
+
+            fetch('https://tt-front.vercel.app/messages', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                let message = data.at(-1);
+                message.timestamp = getTimeFromISOString(message.timestamp);
+                setLastgmessage(message);
+            })
+        }
+
+        function getTimeFromISOString(timestamp) {
+            return new Date(timestamp).toLocaleTimeString('ru', { timeStyle: 'short', hour12: false, timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone });
+          }
+
+        useEffect(() => {
+            const time = setInterval(() => pollItems(), 1000);
+            return () => clearInterval(time);
+        }, []);
+
+
+        return (
+            <div className='chats'>
+                <Chat name={'Общий чат'} type={'general'} photo={mycat} last_message={lastgmessage.text} owner={lastgmessage.author} time={lastgmessage.timestamp}/>
+                {
+                    chats.map((chat, index) => {
+                        return (  
+                            <Chat
+                                type={'mine'}
+                                key={index}
+                                id={chat.id}
+                                name={chat.chat_title}
+                                photo={mycat} 
+                                last_message={chat.last_message.message}
+                                time={getTimeFromISOString(chat.last_message.message_created_at)}
+                                status={chat.last_message.checked}
+                                owner={chat.last_message.owner}
+                            />
+                        )
+                    })      
+                }
+            </div>
+        )
+    }
+
+
+
     return (
         <div className='chats_list'>
             <ChatHead>
@@ -31,20 +99,7 @@ export function PageChatList(props) {
                     <SearchIcon style={style}/>
                 </Button>
             </ChatHead>
-            <div className='chats'>
-                <Link to={'/chat/1'} className='link_chat' >
-                    <Chat photo={mycat} name={'Персик'} last_message={'мяяяяяяяяяяяяяяяяя'} time={'06:35'} status={'read'} />
-                </Link>
-                <Link to={'/chat/2'} className='link_chat' >
-                    <Chat photo={polina} name={'Полина'} last_message={'Привет, ты как?'} time={'15:15'} status={'unread'} />
-                </Link>
-                <Link to={'/chat/3'} className='link_chat' >
-                    <Chat photo={photonics} name={'Чат группы'} last_message={'ну что, где все? на сколько все опоздают??'} time={'15:10'} status={'unread_many'} number={'99'} />
-                </Link>
-                <Link to={'/chat/4'} className='link_chat' >
-                    <Chat photo={kittens} name={'Котята'} last_message={'У меня котенок мяукает уже час, это норм?'} time={'15:05'} status={'mentioned'} number={'@ 199'} />
-                </Link>
-            </div>
+            <Chats />
             <div className='create_chat'>
                 <EditIcon style={style} />
             </div>
