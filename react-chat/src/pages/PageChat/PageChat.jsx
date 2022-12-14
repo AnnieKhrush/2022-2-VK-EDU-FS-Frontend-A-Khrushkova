@@ -49,7 +49,7 @@ export function PageChat(props) {
         }
         const time = setInterval(() => pollItems(), 1000);
         return () => clearInterval(time);
-      }, []);
+      }, [params.id]);
 
 
     const style = {
