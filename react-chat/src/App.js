@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { HashRouter, Routes, Route, useParams } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { PageChat } from './pages/PageChat';
 import { PageChatList } from './pages';
 import { PageUserEdit } from './pages';

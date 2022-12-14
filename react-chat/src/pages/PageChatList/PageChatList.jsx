@@ -4,9 +4,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import EditIcon from '@mui/icons-material/Edit';
 import './PageChatList.scss';
 import mycat from '../../photos/mycat.jpg';
-import polina from '../../photos/polina.jpg';
-import photonics from '../../photos/photonics.jpg';
-import kittens from '../../photos/kittens.jpg';
 import { Button } from '../../components';
 import { ChatHead } from '../../components';
 import { Chat } from '../../components';
@@ -26,37 +23,36 @@ export function PageChatList(props) {
         let [lastgmessage, setLastgmessage] = useState({})
 
 
-        const pollItems = () => {
-            fetch('/chats/list/1', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
-            .then(response => response.json())
-            .then(data => {
-                setChats(data);
-            })
-
-            fetch('https://tt-front.vercel.app/messages', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
-            .then(response => response.json())
-            .then(data => {
-                let message = data.at(-1);
-                message.timestamp = getTimeFromISOString(message.timestamp);
-                setLastgmessage(message);
-            })
-        }
-
         function getTimeFromISOString(timestamp) {
             return new Date(timestamp).toLocaleTimeString('ru', { timeStyle: 'short', hour12: false, timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone });
           }
 
         useEffect(() => {
+            const pollItems = () => {
+                fetch('/chats/list/1', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    setChats(data);
+                })
+    
+                fetch('https://tt-front.vercel.app/messages', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    let message = data.at(-1);
+                    message.timestamp = getTimeFromISOString(message.timestamp);
+                    setLastgmessage(message);
+                })
+            }
             const time = setInterval(() => pollItems(), 1000);
             return () => clearInterval(time);
         }, []);

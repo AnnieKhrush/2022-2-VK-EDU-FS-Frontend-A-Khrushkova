@@ -32,22 +32,21 @@ export function PageChat(props) {
         .then(data => {
             setInfo(data);
         })
-    }, [])
+    }, [params.id])
 
-
-    const pollItems = () => {
-
-        fetch(`/chats/message/list/${params.id}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        .then(response => response.json())
-        .then(data => setMessages(data.reverse()))
-    }
 
     useEffect(() => {
+        const pollItems = () => {
+
+            fetch(`/chats/message/list/${params.id}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => setMessages(data.reverse()))
+        }
         const time = setInterval(() => pollItems(), 1000);
         return () => clearInterval(time);
       }, []);
