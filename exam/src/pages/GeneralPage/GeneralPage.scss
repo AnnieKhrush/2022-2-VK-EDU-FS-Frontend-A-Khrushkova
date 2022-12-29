@@ -1,0 +1,80 @@
+.generalPage {
+    background-color: white;
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.translate_field {
+    border-radius: 8px;
+    border: solid 1px grey;
+    width: calc(100% - 60px);
+    margin: 30px;
+    align-self: center;
+    height: 100px;
+}
+
+.languages {
+    height: 20px;
+    width: 100%;
+    border-bottom: solid 1px black;
+}
+
+input[type=text] {
+    //height: calc(100% - 20px);
+    border: 0;
+    outline: none;
+}
+
+.form {
+    display: flex;
+    flex-direction: row;
+    height: calc(100% - 20px);
+}
+
+.form-input {
+    flex-grow: 1;
+    width: 50%;
+    padding: 0 4px;
+    height: 100%;
+}
+
+.form-output {
+    flex-grow: 1;
+    width: 50%;
+    border-left: solid 1px black;
+    height: 100%;
+    padding: 0 4px;
+}
+
+.history_button {
+    border-radius: 50%;
+    background-color: #EAF0FC;
+    color: #1B73E8;
+    padding: 10px;
+    height: 40px;
+    width: 40px;
+    margin: 6px;
+}
+
+.history_button:active {
+    animation: none;
+    background-color: rgb(162, 186, 234);
+    color: #1B73E8;
+}
+
+.history_word {
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.history {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    height: 60px;
+    width: 60px;
+    margin: 20px;
+}
