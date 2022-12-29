@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState }  from 'react';
 import './History.scss'
 import { Link } from 'react-router-dom';
 import { Header } from '../../components';
@@ -8,7 +8,20 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export function History(props) {
 
-    const translations = localStorage.getItem("db_translations") ? JSON.parse(localStorage.getItem("db_translations")) : [];
+
+    const [translations, setTranslations] = useState([])
+
+
+    function getTranslations() {
+        let i = localStorage.getItem("db_translations") ? JSON.parse(localStorage.getItem("db_translations")) : [];
+        setTranslations(i);
+
+    }
+
+    useEffect(() => {
+        setTranslations(localStorage.getItem("db_translations") ? JSON.parse(localStorage.getItem("db_translations")) : [])
+    }, [])
+
 
     const style = {
         fontSize: '36px'
@@ -27,6 +40,7 @@ export function History(props) {
             <div className='translations_list'>
                 <div className='clear' onClick = {() => {
                     localStorage.clear();
+                    getTranslations();
                 }}>
                     Очистить историю
                 </div>

@@ -63,7 +63,7 @@ export function GeneralPage(props) {
                 'X-RapidAPI-Key': 'df5ffa97f3mshfa5277882376ad1p1db7b7jsnb69ba524116a',
                 'X-RapidAPI-Host': 'microsoft-translator-text.p.rapidapi.com'
             },
-            body: '[{"Text":"I would really like to drive your car around the block a few times."}]'
+            body: '[{"Text":"hello"}]'
         };
         
         fetch(`https://microsoft-translator-text.p.rapidapi.com/translate?to%5B0%5D=${finalLang}&api-version=3.0&profanityAction=NoAction&textType=plain`, options)
@@ -74,7 +74,7 @@ export function GeneralPage(props) {
                 let newTranslation = {
                     'from': response[0].detectedLanguage.language,
                     'to': response[0].translations[0].to,
-                    'initial': "I would really like to drive your car around the block a few times.",
+                    'initial': "hello",
                     'final': response[0].translations[0].text,
                 }
                 let translationsStorage = localStorage.getItem("db_translations") ? JSON.parse(localStorage.getItem("db_translations")) : [];
