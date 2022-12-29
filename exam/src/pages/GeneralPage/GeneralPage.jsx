@@ -29,10 +29,8 @@ export function GeneralPage(props) {
 
     const [value, setValue] = useState('');
     //const [isOpen, setOpen] = useState(false);
-    const [initialLang, setInitialLang] = useState('');
     const [finalLang, setFinalLang] = useState('ru');
     const [translation, setTranslation] = useState('');
-    const [initialText, setInitialText] = useState("I would really like to drive your car around the block a few times.");
 
 
     const style = {
@@ -74,26 +72,19 @@ export function GeneralPage(props) {
             .then(response => {
                 console.log(response);
                 setTranslation(response[0].translations[0].text);
-                setInitialLang(response[0].detectedLanguage.language);
-                setFinalLang(response[0].translations[0].to);
-                setInitialText("I would really like to drive your car around the block a few times.");
-                //setInitialText(value)
-                addToLS();
+                let newTranslation = {
+                    'from': response[0].detectedLanguage.language,
+                    'to': response[0].translations[0].to,
+                    'initial': "I would really like to drive your car around the block a few times.",
+                    'final': response[0].translations[0].text,
+                }
+                let translationsStorage = localStorage.getItem("db_translations") ? JSON.parse(localStorage.getItem("db_translations")) : [];
+                translationsStorage.push(newTranslation)
+                localStorage.setItem("db_translations" , JSON.stringify(translationsStorage));
             })
             .catch(err => console.error(err));
     }
 
-    function addToLS() {
-        let newTranslation = {
-            'from': initialLang,
-            'to': finalLang,
-            'initial': initialText,
-            'final': translation,
-        }
-        let translationsStorage = localStorage.getItem("db_translations") ? JSON.parse(localStorage.getItem("db_translations")) : [];
-        translationsStorage.push(newTranslation)
-        localStorage.setItem("db_translations" , JSON.stringify(translationsStorage));
-    }
 
     
     function handleSubmit(event) {
@@ -101,10 +92,6 @@ export function GeneralPage(props) {
         if (value === '') {
             return;
         } else {
-            setTranslation('');
-            setInitialLang('');
-            setFinalLang('');
-            setInitialText('');
             translateText();
         }
         setValue('');
