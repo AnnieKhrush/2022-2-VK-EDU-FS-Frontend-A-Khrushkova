@@ -29,7 +29,6 @@ export function GeneralPage(props) {
 
     const [value, setValue] = useState('');
     //const [isOpen, setOpen] = useState(false);
-    const [finalLang, setFinalLang] = useState('ru');
     const [translation, setTranslation] = useState('');
 
 
@@ -56,7 +55,7 @@ export function GeneralPage(props) {
 //    }
 
 
-    function translateText() {
+    function translateText(finalLang) {
         const options = {
             method: 'POST',
             headers: {
@@ -92,7 +91,7 @@ export function GeneralPage(props) {
         if (value === '') {
             return;
         } else {
-            translateText();
+            translateText('ru');
         }
         setValue('');
     }
