@@ -17,11 +17,11 @@ export function History(props) {
     return(
         <div className='history_page'>
             <div className='history_head'>
-                <div className='arrow_button'>
-                    <Link to='/' >
+                <Link to='/' >
+                    <div className='arrow_button'>
                         <ArrowBackIcon className='arrow' style={ style }/>
-                    </Link>
-                </div>
+                    </div>
+                </Link>
                 <Header name={'История'}/>
             </div>
             <div className='translations_list'>

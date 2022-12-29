@@ -105,7 +105,7 @@ export function GeneralPage(props) {
 //    const handleOpen = () => setOpen(true);
 
     return (
-        <div className='generalPage'>
+        <div className='general_page'>
             <Header name={'Translate'} />
             <div className='translate_field'>
                 <div className='languages'>
