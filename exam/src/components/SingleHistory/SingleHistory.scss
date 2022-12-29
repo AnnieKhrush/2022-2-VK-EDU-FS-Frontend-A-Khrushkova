@@ -1,0 +1,31 @@
+.single_history {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 6px;
+    border-radius: 6px;
+    background-color: #F7F8F8;
+    border: solid 1px black;
+}
+
+.from_to {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    font-size: 20px;
+}
+
+.texts {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 20px;
+}
+
+.from, .to, .initial, .final {
+    margin: 4px;
+}
+
+.arrow_to {
+    margin: 4px;
+}

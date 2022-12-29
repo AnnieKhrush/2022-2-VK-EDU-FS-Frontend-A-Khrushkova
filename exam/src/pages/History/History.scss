@@ -13,6 +13,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    position: fixed;
+    top: 0;
 }
 
 .arrow_button {
@@ -35,4 +37,22 @@
     background-color: rgb(162, 186, 234);
     color: #1B73E8;
     
+}
+
+.translations_list {
+    width: 100%;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.final {
+    color: grey;
+}
+
+.clear {
+    margin: 6px;
+    border-radius: 6px;
+    color:#1B73E8;
+    width: max-content;
 }

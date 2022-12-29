@@ -4,37 +4,58 @@ import { Header } from '../../components';
 import './GeneralPage.scss';
 import HistoryIcon from '@mui/icons-material/History';
 
+//function ListLanguages() {
+//    let res = '';
+//    const options = {
+//        method: 'GET',
+//        headers: {
+//            'X-RapidAPI-Key': 'df5ffa97f3mshfa5277882376ad1p1db7b7jsnb69ba524116a',
+//            'X-RapidAPI-Host': 'microsoft-translator-text.p.rapidapi.com',
+//            'x-rapidapi-ua': 'RapidAPI-Playground'
+//        }
+//    };
+    
+//    fetch('https://microsoft-translator-text.p.rapidapi.com/languages?api-version=3.0', options)
+//        .then(response => {res = response.json();})
+//        .then(response => console.log(response))
+//        .catch(err => {console.error(err); return(err);});
+
+//    return(res)
+    
+//}
+
 export function GeneralPage(props) {
 
 
-    const [value, setValue] = useState('')
-    const [isOpen, setOpen] = useState(false);
+    const [value, setValue] = useState('');
+    //const [isOpen, setOpen] = useState(false);
+    const [initialLang, setInitialLang] = useState('');
+    const [finalLang, setFinalLang] = useState('ru');
+    const [translation, setTranslation] = useState('');
+    const [initialText, setInitialText] = useState("I would really like to drive your car around the block a few times.");
+
 
     const style = {
         fontSize: '36px'
     }
 
 
-    function ListLanguages() {
-        
-    }
-
-    function selectLang() {
-        const options = {
-            method: 'GET',
-            headers: {
-                'X-RapidAPI-Key': 'df5ffa97f3mshfa5277882376ad1p1db7b7jsnb69ba524116a',
-                'X-RapidAPI-Host': 'microsoft-translator-text.p.rapidapi.com',
-                'x-rapidapi-ua': 'RapidAPI-Playground'
-            }
-        };
-        
-        fetch('https://microsoft-translator-text.p.rapidapi.com/languages?api-version=3.0', options)
-            .then(response => {response.json(); return(response);})
-            .then(response => console.log(response))
-            .catch(err => {console.error(err); return(err);});
-        
-    }
+//    function Languages() {
+//        const languages = ListLanguages()
+//        console.log(languages)
+//        return (
+//            {
+//                languages.map((language) => {
+//                    return (
+//                        <div className='lang'>
+//                            {language}
+//                        </div>
+//                   )
+//                    })
+//            }
+//            )
+//            
+//    }
 
 
     function translateText() {
@@ -48,32 +69,70 @@ export function GeneralPage(props) {
             body: '[{"Text":"I would really like to drive your car around the block a few times."}]'
         };
         
-        fetch('https://microsoft-translator-text.p.rapidapi.com/translate?to%5B0%5D=ru&api-version=3.0&profanityAction=NoAction&textType=plain', options)
+        fetch(`https://microsoft-translator-text.p.rapidapi.com/translate?to%5B0%5D=${finalLang}&api-version=3.0&profanityAction=NoAction&textType=plain`, options)
             .then(response => response.json())
-            .then(response => console.log(response))
+            .then(response => {
+                console.log(response);
+                setTranslation(response[0].translations[0].text);
+                setInitialLang(response[0].detectedLanguage.language);
+                setFinalLang(response[0].translations[0].to);
+                setInitialText("I would really like to drive your car around the block a few times.");
+                //setInitialText(value)
+                addToLS();
+            })
             .catch(err => console.error(err));
     }
 
-    
+    function addToLS() {
+        let newTranslation = {
+            'from': initialLang,
+            'to': finalLang,
+            'initial': initialText,
+            'final': translation,
+        }
+        let translationsStorage = localStorage.getItem("db_translations") ? JSON.parse(localStorage.getItem("db_translations")) : [];
+        translationsStorage.push(newTranslation)
+        localStorage.setItem("db_translations" , JSON.stringify(translationsStorage));
+    }
 
-    const handleOpen = () => setOpen(true);
+    
+    function handleSubmit(event) {
+        event.preventDefault();
+        if (value === '') {
+            return;
+        } else {
+            setTranslation('');
+            setInitialLang('');
+            setFinalLang('');
+            setInitialText('');
+            translateText();
+        }
+        setValue('');
+    }
+
+
+    function handleChange(event) {
+        setValue(event.target.value);
+    }
+
+
+//    const handleOpen = () => setOpen(true);
 
     return (
         <div className='generalPage'>
             <Header name={'Translate'} />
             <div className='translate_field'>
                 <div className='languages'>
-                
-
+                    
                 </div>
                 <div className='form'>
                     <div className='form-input'>
-                        <form>
-                        <input value={value} name='for_translation' placeholder='For translation' type='text' />
+                        <form action="/" onSubmit={handleSubmit}>
+                            <input value={value} name='for_translation' placeholder='For translation' type='text' onChange={handleChange}/>
                         </form>
                     </div>
                     <div className='form-output'>
-                        helo
+                        {translation}
                     </div>
                 </div>
             </div>
@@ -88,3 +147,8 @@ export function GeneralPage(props) {
         </div>
     )
 }
+
+//<input onClick={handleOpen} type='button' />
+//                        {
+//                            isOpen && (<Languages className='select_languages'/>)
+//                        }
