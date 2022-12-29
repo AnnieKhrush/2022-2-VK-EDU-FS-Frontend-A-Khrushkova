@@ -1,23 +1,85 @@
+form {
+    align-self: center;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between;
+}
+
 .form {
     width: 100%;
     margin: 0;
     padding: 0;
-    height: min-content;
-    background-color: #F8F8F8;
+    height: 60px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    border-top: 1px solid #D0C8D2; 
 }
+
+.form_preview {
+    background-color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: min-content;
+}
+
+.images_preview {
+    background-color:rgba(142, 36, 170, 0.6);
+    border-radius: 6px;
+    height: min-content;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.form_text {
+    flex-grow: 100;
+    height: 100%;
+    margin: 0;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.form_messages {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .text_field {
     padding: 4px 0;
-    width: 100%;
-    height: 60px;
-    border-top: 1px solid #D0C8D2;
-    bottom: 0;
+    height: 100%;
+    width: 90%;
     display: flex;
     flex-direction: row;
     background-color: white;
+    flex-grow: 100;
     align-items: center;
-    justify-content: space-between;
-    position: fixed;
+
 }
+
+.form_geo {
+    flex-grow: 1;
+    margin: 0;
+    height: 100%;
+}
+
+.geo_field, .attach_field, .micro_field {
+    flex-grow: 1;
+    padding: 4px 0;
+    background-color: white;
+    height: 100%;
+    align-self: center;
+}
+
 
 .form-input {
     font-size: 20px;
@@ -26,6 +88,7 @@
     line-height: 20px;
     flex-grow: 10;
     margin-left: 8px;
+    margin-top: 12px;
 }
 
 ::placeholder {
@@ -40,32 +103,50 @@ input[type=submit] {
     visibility: collapse;
 }
 
-input {
+
+input[type=text] {
     border: 0;
     outline: none;
     width: calc(100% - 2px);
 }
 
-.attach {
+.attach, .geo, .micro {
     background-color: white;
     flex-grow: 2;
     color: #999999;
     border-radius: 50%;
+    border: none;
     padding: 6px;
     height: 40px;
     width: 40px;
     margin: 4px;
+    align-self: center;
     transition: background-color .5s, color .5s;
 }
 
 
-.attach:hover {
+.attach:hover, .geo:hover, .micro:hover {
     background-color: #d0cdcd;
     color: white;
 }
 
 
-.attach:active {
+.attach:active, .geo:active, .micro:active {
     background-color: #999999;
     color: white;
+}
+
+.downloaded_image {
+    border-radius: 6px;
+    height: 90px;
+    width: 90px;
+    margin: 4px;
+    padding: 0;
+    align-self: center;
+}
+
+.img_field {
+    margin: 4px;
+    height: 90px;
+    padding: 0;
 }

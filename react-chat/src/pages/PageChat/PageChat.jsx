@@ -84,12 +84,3 @@ export function PageChat(props) {
         </div>
     )
 }
-
-
-//const [messages, setMessages] = useState(() => {const begin_state=localStorage.getItem("db_messages") ? JSON.parse(localStorage.getItem("db_messages")) : [];
-//    return begin_state;})
-
-//    function getMessages() {
-//        const get_messages = localStorage.getItem("db_messages") ? JSON.parse(localStorage.getItem("db_messages")) : [];
-//        setMessages(get_messages)
-//    }
