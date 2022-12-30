@@ -4,6 +4,7 @@ import { Header } from '../../components';
 //import { Button } from '../../components';
 import './GeneralPage.scss';
 import HistoryIcon from '@mui/icons-material/History';
+import SyncAltIcon from '@mui/icons-material/SyncAlt';
 //import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 
@@ -30,12 +31,16 @@ export function GeneralPage(props) {
 
     const [value, setValue] = useState('');
     const [translation, setTranslation] = useState('');
-//    const [listLang, setListLang] = useState('');
+    const [listLang, setListLang] = useState([]);
     
 
 
     const style = {
         fontSize: '36px'
+    }
+
+    const arrowStyle = {
+        fontSize: '16px'
     }
 
     function translateText(finalLang) {
@@ -94,6 +99,9 @@ export function GeneralPage(props) {
             <Header name={'Translate'} />
             <div className='translate_field'>
                 <div className='languages'>
+                    <div className='switch'>
+                        <SyncAltIcon style={arrowStyle} />
+                    </div>
                 </div>
                 <div className='form'>
                     <div className='form-input'>

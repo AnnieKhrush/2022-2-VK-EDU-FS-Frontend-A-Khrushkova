@@ -93,8 +93,12 @@ a {
     text-decoration: none;
 }
 
-.arrow_down {
-    height: 100%;
-    width: 50px;
-    margin-left: 30px;
+//.arrow_down {
+//    height: 100%;
+//    width: 50px;
+//    margin-left: 30px;
+//}
+
+.switch {
+    margin: 2px calc(50% - 8px); 
 }

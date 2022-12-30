@@ -11,12 +11,13 @@
 
 
 .history_head {
-    width: calc(100% - 40px);
+    width: calc(100% - 28px);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     position: fixed;
     top: 20px;
+    background-color: white;
 }
 
 .arrow_button {
