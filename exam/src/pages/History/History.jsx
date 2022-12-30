@@ -14,12 +14,12 @@ export function History(props) {
 
     function getTranslations() {
         let i = localStorage.getItem("db_translations") ? JSON.parse(localStorage.getItem("db_translations")) : [];
-        setTranslations(i);
+        setTranslations(i.reverse());
 
     }
 
     useEffect(() => {
-        setTranslations(localStorage.getItem("db_translations") ? JSON.parse(localStorage.getItem("db_translations")) : [])
+        setTranslations((localStorage.getItem("db_translations") ? JSON.parse(localStorage.getItem("db_translations")) : []).reverse())
     }, [])
 
 
@@ -45,9 +45,10 @@ export function History(props) {
                     Очистить историю
                 </div>
                 {
-                translations.map((list) => {
+                translations.map((list, index) => {
                     return (
                         <SingleHistory
+                            key={index}
                             from={list.from} 
                             to={list.to} 
                             initial={list.initial}

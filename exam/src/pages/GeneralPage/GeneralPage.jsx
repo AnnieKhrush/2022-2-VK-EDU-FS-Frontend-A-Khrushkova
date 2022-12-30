@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Header } from '../../components';
+//import { Button } from '../../components';
 import './GeneralPage.scss';
 import HistoryIcon from '@mui/icons-material/History';
+//import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+
+
 
 //function ListLanguages() {
-//    let res = '';
 //    const options = {
 //        method: 'GET',
 //        headers: {
@@ -14,46 +17,26 @@ import HistoryIcon from '@mui/icons-material/History';
 //            'x-rapidapi-ua': 'RapidAPI-Playground'
 //        }
 //    };
-    
+//  
 //    fetch('https://microsoft-translator-text.p.rapidapi.com/languages?api-version=3.0', options)
-//        .then(response => {res = response.json();})
-//        .then(response => console.log(response))
-//        .catch(err => {console.error(err); return(err);});
-
-//    return(res)
-    
+//        .then(response => response.json())
+//       .then(response => console.log(response))
+//        .catch(err => console.error(err));  
+//  
 //}
 
 export function GeneralPage(props) {
 
 
     const [value, setValue] = useState('');
-    //const [isOpen, setOpen] = useState(false);
     const [translation, setTranslation] = useState('');
+//    const [listLang, setListLang] = useState('');
+    
 
 
     const style = {
         fontSize: '36px'
     }
-
-
-//    function Languages() {
-//        const languages = ListLanguages()
-//        console.log(languages)
-//        return (
-//            {
-//                languages.map((language) => {
-//                    return (
-//                        <div className='lang'>
-//                            {language}
-//                        </div>
-//                   )
-//                    })
-//            }
-//            )
-//            
-//    }
-
 
     function translateText(finalLang) {
         const options = {
@@ -63,7 +46,7 @@ export function GeneralPage(props) {
                 'X-RapidAPI-Key': 'df5ffa97f3mshfa5277882376ad1p1db7b7jsnb69ba524116a',
                 'X-RapidAPI-Host': 'microsoft-translator-text.p.rapidapi.com'
             },
-            body: '[{"Text":"hello"}]'
+            body: `[{"Text":"${value}"}]`
         };
         
         fetch(`https://microsoft-translator-text.p.rapidapi.com/translate?to%5B0%5D=${finalLang}&api-version=3.0&profanityAction=NoAction&textType=plain`, options)
@@ -74,7 +57,7 @@ export function GeneralPage(props) {
                 let newTranslation = {
                     'from': response[0].detectedLanguage.language,
                     'to': response[0].translations[0].to,
-                    'initial': "hello",
+                    'initial': value,
                     'final': response[0].translations[0].text,
                 }
                 let translationsStorage = localStorage.getItem("db_translations") ? JSON.parse(localStorage.getItem("db_translations")) : [];
@@ -102,14 +85,15 @@ export function GeneralPage(props) {
     }
 
 
-//    const handleOpen = () => setOpen(true);
+//    useEffect(() => {ListLanguages();}, [])
+
+
 
     return (
         <div className='general_page'>
             <Header name={'Translate'} />
             <div className='translate_field'>
                 <div className='languages'>
-                    
                 </div>
                 <div className='form'>
                     <div className='form-input'>
@@ -134,7 +118,14 @@ export function GeneralPage(props) {
     )
 }
 
-//<input onClick={handleOpen} type='button' />
-//                        {
-//                            isOpen && (<Languages className='select_languages'/>)
-//                        }
+//<select className='arrow_down'>  
+//{
+//    listLang.map((lang) => {
+//        return(
+//            <option>
+//                {lang.name}
+//            </option>
+//        )
+//    })
+//    }
+//</select>
