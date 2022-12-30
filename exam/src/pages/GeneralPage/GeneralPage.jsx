@@ -31,7 +31,7 @@ export function GeneralPage(props) {
 
     const [value, setValue] = useState('');
     const [translation, setTranslation] = useState('');
-    const [listLang, setListLang] = useState([]);
+//    const [listLang, setListLang] = useState([]);
     
 
 
