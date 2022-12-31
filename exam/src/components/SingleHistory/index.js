@@ -1,0 +1,1 @@
+export { SingleHistory } from './SingleHistory';

@@ -1,0 +1,65 @@
+.history_page {
+    background-color: white;
+    height: 100vh;
+    margin: 0;
+    width: calc(100% - 40px);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+
+.history_head {
+    width: calc(100% - 28px);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: fixed;
+    top: 20px;
+    background-color: white;
+}
+
+.arrow_button {
+    flex-grow: 0.5;
+    color: #1B73E8;
+    padding: 0;
+    height: 36px;
+    width: 36px;
+    margin: 0; 
+}
+
+.arrow {
+    border-radius: 50%;
+    background-color: #EAF0FC;
+    color: #1B73E8;
+    padding: 8px;
+    height: 40px;
+    width: 40px;
+    margin-top: 14px;
+}
+
+.arrow:active {
+    animation: none;
+    background-color: rgb(162, 186, 234);
+    color: #1B73E8;
+    
+}
+
+.translations_list {
+    width: 100%;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.final {
+    color: grey;
+}
+
+.clear {
+    margin: 6px;
+    border-radius: 6px;
+    color:#1B73E8;
+    width: max-content;
+}
