@@ -61,6 +61,7 @@ export function GeneralPage(props) {
 
     useEffect(() => {
         ListLanguages();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         }, []);
 
 
