@@ -130,6 +130,34 @@ input[type=text] {
     color: white;
 }
 
+.stop_micro {
+    flex-grow: 2;
+    background-color: white;
+    color: #8E24AA;
+    border-radius: 50%;
+    border: none;
+    padding: 6px;
+    height: 40px;
+    width: 40px;
+    margin: calc(50% - 18px) 4px;
+    align-self: center;
+    animation: pulse 2s infinite;
+}
+
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgb(221, 161, 238);
+    }
+    70% {
+        box-shadow: 0 0 0 4px rgb(221, 161, 238);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgb(221, 161, 238);
+    }
+}
+
+
 .downloaded_image {
     border-radius: 6px;
     height: 90px;

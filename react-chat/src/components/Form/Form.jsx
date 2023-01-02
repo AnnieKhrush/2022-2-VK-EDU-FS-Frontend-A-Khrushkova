@@ -213,7 +213,7 @@ export function Form(props) {
                             </div>
                         </div>
                         <div className='micro_field'>
-                            <div className='micro'>
+                            <div className={recordingStarted ? 'stop_micro' : 'micro'} >
                                 {recordingStarted ? Stop() : Start() }
                             </div>
                         </div>
