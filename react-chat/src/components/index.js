@@ -9,3 +9,4 @@ export * from './HeadName';
 export * from './EditProfileForm';
 export * from './GeneralMessages';
 export * from './GeneralForm';
+export * from './Chats';

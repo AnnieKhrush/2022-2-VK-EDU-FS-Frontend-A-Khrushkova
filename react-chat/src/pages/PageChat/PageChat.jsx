@@ -10,6 +10,7 @@ import {ChatHead} from '../../components';
 import {UserAccount} from '../../components';
 import {Form} from '../../components';
 import {Messages} from '../../components';
+import { allowNotification } from '../PageChatList/PageChatList';
 
 
 export function PageChat(props) {
@@ -17,8 +18,17 @@ export function PageChat(props) {
     const params = useParams();
     console.log(params);
 
-    const [messages, setMessages] = useState([])
-    const [info, setInfo] = useState('')
+    const [messages, setMessages] = useState([]);
+    const [info, setInfo] = useState('');
+    const [chatsEarlier, setChatsEarlier] = useState([]);
+    const [generalEarlier, setGeneralEarlier] = useState({});
+    const [chats, setChats] = useState([]);
+    const [lastgmessage, setLastgmessage] = useState({})
+
+
+    const style = {
+        fontSize: '28px'
+    }
 
 
     useEffect(() => {
@@ -46,15 +56,58 @@ export function PageChat(props) {
             })
             .then(response => response.json())
             .then(data => setMessages(data.reverse()))
+
+            fetch('/chats/list/1', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => setChats(data))
+    
+            fetch('https://tt-front.vercel.app/messages', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                let message = data.at(-1);
+                setLastgmessage(message);  
+            })
         }
-        const time = setInterval(() => pollItems(), 1000);
+
+        setChatsEarlier(chats);
+        setGeneralEarlier(lastgmessage);
+        const time = setInterval(() => pollItems(), 500);
         return () => clearInterval(time);
-      }, [params.id]);
+    }, [chats, lastgmessage, params.id]);
 
 
-    const style = {
-        fontSize: '28px'
-    }
+    useEffect(() => {
+        if (allowNotification()) {
+            console.log(lastgmessage);
+            console.log(chatsEarlier);
+            for (let i = 0; i < chatsEarlier.length; i++) {
+                if ((chats[i].chat_messages.length > chatsEarlier[i].chat_messages.length) && (chats[i].last_message.owner !== 'me') && (chats[i].id !== Number(params.id))) {
+                    let notification = new Notification(`New message from '${chats[i].chat_title}'`,{
+                        body: `${chats[i].last_message.owner}: ${chats[i].last_message.message}`,
+                    });
+                    notification.close();
+                }
+            }
+            if ((lastgmessage.id > generalEarlier.id) && (lastgmessage.author !== 'Anya')) {
+                let notification = new Notification(`New message from 'Общий чат'`,{
+                    body: `${lastgmessage.author}: ${lastgmessage.text}`,
+                });
+                notification.close();
+            }
+            setChatsEarlier(chats);
+            setGeneralEarlier(lastgmessage);
+        }
+    }, [chats, chatsEarlier, generalEarlier, lastgmessage, params.id])
 
 
     return (
