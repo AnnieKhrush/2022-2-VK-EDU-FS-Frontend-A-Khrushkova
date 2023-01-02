@@ -141,11 +141,11 @@ input[type=text] {
     width: 40px;
     margin: calc(50% - 18px) 4px;
     align-self: center;
-    animation: pulse 2s infinite;
+    animation: pulse_mic 2s infinite;
 }
 
 
-@keyframes pulse {
+@keyframes pulse_mic {
     0% {
         box-shadow: 0 0 0 0 rgb(221, 161, 238);
     }
