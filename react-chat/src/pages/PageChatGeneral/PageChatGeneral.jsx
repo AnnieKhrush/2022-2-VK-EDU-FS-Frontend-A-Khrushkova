@@ -25,10 +25,8 @@ export function PageChatGeneral(props) {
     const [chatsEarlier, setChatsEarlier] = useState([]);
 
 
-    const pollItems = () => {
-    
+    const pollItems = () => {   
         props.getGmessages();
-
         props.getChats();
     }
 
@@ -36,7 +34,7 @@ export function PageChatGeneral(props) {
     useEffect(() => {
         setChatsEarlier(props.chats);
         const time = setInterval(() => pollItems(), 500);
-        return () => clearInterval(time);
+        return () => clearInterval(time); // eslint-disable-next-line
     }, [props]);
 
 
