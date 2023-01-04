@@ -51,8 +51,8 @@ export function PageChatList(props) {
   
     useEffect(() => {
         if (allowNotification()) {
-//            console.log(props.lastgmessage);
-//            console.log(chatsEarlier);
+            console.log('after', props.lastgmessage);
+            console.log('before', generalEarlier);
             for (let i = 0; i < chatsEarlier.length; i++) {
                 if ((props.chats[i].chat_messages.length > chatsEarlier[i].chat_messages.length) && (props.chats[i].last_message.owner !== 'me')) {
                     let notification = new Notification(`New message from '${props.chats[i].chat_title}'`,{
@@ -61,7 +61,8 @@ export function PageChatList(props) {
                     notification.close();
                 }
             }
-            if ((props.lastgmessage.id > generalEarlier.id) && (props.lastgmessage.author !== 'Anya')) {
+            if ((props.lastgmessage._id > generalEarlier._id
+                ) && (props.lastgmessage.author !== '')) {
                 let notification = new Notification(`New message from 'Общий чат'`,{
                     body: `${props.lastgmessage.author}: ${props.lastgmessage.text}`,
                 });
