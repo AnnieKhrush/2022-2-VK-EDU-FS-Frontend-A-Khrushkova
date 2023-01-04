@@ -27,8 +27,6 @@ export function PageChatList(props) {
 
     const [chatsEarlier, setChatsEarlier] = useState([]);
     const [generalEarlier, setGeneralEarlier] = useState({});
-//    const [chats, setChats] = useState([]);
-//    const [lastgmessage, setLastgmessage] = useState({})
 
 
     const style = {

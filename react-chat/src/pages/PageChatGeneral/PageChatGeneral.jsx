@@ -21,7 +21,6 @@ export function PageChatGeneral(props) {
         fontSize: '28px'
     }
 
-//    const [messages, setMessages] = useState([]);
     const [chatsEarlier, setChatsEarlier] = useState([]);
 
 

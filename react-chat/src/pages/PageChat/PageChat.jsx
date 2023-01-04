@@ -20,8 +20,6 @@ export function PageChat(props) {
     const [info, setInfo] = useState('');
     const [chatsEarlier, setChatsEarlier] = useState([]);
     const [generalEarlier, setGeneralEarlier] = useState({});
-//    const [chats, setChats] = useState([]);
-//    const [lastgmessage, setLastgmessage] = useState({})
 
 
     const style = {
