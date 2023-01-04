@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import EditIcon from '@mui/icons-material/Edit';
@@ -8,6 +9,7 @@ import { Button } from '../../components';
 import { ChatHead } from '../../components';
 import { Chats } from '../../components';
 import { HeadName } from '../../components';
+import { getChats, getGmessages } from '../../actions';
 
 
 export async function allowNotification() {
@@ -25,74 +27,51 @@ export function PageChatList(props) {
 
     const [chatsEarlier, setChatsEarlier] = useState([]);
     const [generalEarlier, setGeneralEarlier] = useState({});
-    const [chats, setChats] = useState([]);
-    const [lastgmessage, setLastgmessage] = useState({})
+//    const [chats, setChats] = useState([]);
+//    const [lastgmessage, setLastgmessage] = useState({})
 
 
     const style = {
         fontSize: '28px'
     }
-
-    
-    function getTimeFromISOString(timestamp) {
-        return new Date(timestamp).toLocaleTimeString('ru', { timeStyle: 'short', hour12: false, timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone });
-    }
-
+    //const lastgmessage = props.gmessages.at(-1);
+    console.log(props.gmessages);
 
     useEffect(() => {
         const pollItems = () => {
-            fetch('/chats/list/1', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
-            .then(response => response.json())
-            .then(data => setChats(data))
-    
-            fetch('https://tt-front.vercel.app/messages', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
-            .then(response => response.json())
-            .then(data => {
-                let message = data.at(-1);
-                message.timestamp = getTimeFromISOString(message.timestamp);
-                setLastgmessage(message);  
-            })
+            props.getChats();
+            props.getGMessages();
         }
 
-        setChatsEarlier(chats);
-        setGeneralEarlier(lastgmessage);
+        setChatsEarlier(props.chats);
+        setGeneralEarlier(props.gmessages.at(-1));
         const time = setInterval(() => pollItems(), 1000);
         return () => clearInterval(time);
-    }, [chats, lastgmessage]);
+    }, [props]);
 
   
     useEffect(() => {
         if (allowNotification()) {
-            console.log(lastgmessage);
-            console.log(chatsEarlier);
+//            console.log(props.lastgmessage);
+//            console.log(chatsEarlier);
             for (let i = 0; i < chatsEarlier.length; i++) {
-                if ((chats[i].chat_messages.length > chatsEarlier[i].chat_messages.length) && (chats[i].last_message.owner !== 'me')) {
-                    let notification = new Notification(`New message from '${chats[i].chat_title}'`,{
-                        body: `${chats[i].last_message.owner}: ${chats[i].last_message.message}`,
+                if ((props.chats[i].chat_messages.length > chatsEarlier[i].chat_messages.length) && (props.chats[i].last_message.owner !== 'me')) {
+                    let notification = new Notification(`New message from '${props.chats[i].chat_title}'`,{
+                        body: `${props.chats[i].last_message.owner}: ${props.chats[i].last_message.message}`,
                     });
                     notification.close();
                 }
             }
-            if ((lastgmessage.id > generalEarlier.id) && (lastgmessage.author !== 'Anya')) {
+            if ((props.gmessages.at(-1).id > generalEarlier.id) && (props.gmessages.at(-1).author !== 'Anya')) {
                 let notification = new Notification(`New message from 'Общий чат'`,{
-                    body: `${lastgmessage.author}: ${lastgmessage.text}`,
+                    body: `${props.gmessages.at(-1).author}: ${props.gmessages.at(-1).text}`,
                 });
                 notification.close();
             }
-            setChatsEarlier(chats);
-            setGeneralEarlier(lastgmessage);
+            setChatsEarlier(props.chats);
+            setGeneralEarlier(props.gmessages.at(-1));
         }
-    }, [chats, chatsEarlier, generalEarlier, lastgmessage])
+    }, [chatsEarlier, generalEarlier, props])
 
 
     return (
@@ -106,10 +85,18 @@ export function PageChatList(props) {
                     <SearchIcon style={style}/>
                 </Button>
             </ChatHead>
-            <Chats chats={chats} last_gen_mes={lastgmessage} />
+            <Chats chats={props.chats} last_gen_mes={props.gmessages.at(-1)} />
             <div className='create_chat'>
                 <EditIcon style={style} />
             </div>
         </div>
     )
 }
+
+const mapStateToProps = (state) => ({
+    chats: state.chats.chats,
+    gmessages: state.gmessages.gmessages,
+});
+
+
+export const PageChatListConnect = connect(mapStateToProps, { getChats, getGmessages } )(PageChatList);

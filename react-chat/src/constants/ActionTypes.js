@@ -1,0 +1,9 @@
+export const GET_MESSAGES_REQUEST = '@@messages/GET_MESSAGES_REQUEST';
+export const GET_MESSAGES_SUCCESS = '@@messages/GET_MESSAGES_SUCCESS';
+export const GET_MESSAGES_FAILURE = '@@messages/GET_MESSAGES_FAILURE';
+export const GET_CHATS_REQUEST = '@@chats/GET_CHATS_REQUEST';
+export const GET_CHATS_SUCCESS = '@@chats/GET_CHATS_SUCCESS';
+export const GET_CHATS_FAILURE = '@@chats/GET_CHATS_FAILURE';
+export const GET_GMESSAGES_REQUEST = '@@gmessages/GET_GMESSAGES_REQUEST';
+export const GET_GMESSAGES_SUCCESS = '@@gmessages/GET_GMESSAGES_SUCCESS';
+export const GET_GMESSAGES_FAILURE = '@@gmessages/GET_GMESSAGES_FAILURE';
