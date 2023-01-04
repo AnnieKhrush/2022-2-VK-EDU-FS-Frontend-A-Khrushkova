@@ -1,1 +1,1 @@
-export { PageChatGeneral } from './PageChatGeneral';
+export { PageChatGeneralConnect } from './PageChatGeneral';

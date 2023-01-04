@@ -5,7 +5,6 @@ import { Message } from '../Message/Message';
 export function Messages(props) {
     //console.log('mess', props.messages);
 
-
     return (
         <div className='messages'>
             {

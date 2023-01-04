@@ -1,6 +1,7 @@
 import { GET_MESSAGES_REQUEST, GET_MESSAGES_SUCCESS, GET_MESSAGES_FAILURE } from '../constants/ActionTypes';
 import { GET_CHATS_REQUEST, GET_CHATS_SUCCESS, GET_CHATS_FAILURE } from '../constants/ActionTypes';
-import { GET_GMESSAGES_REQUEST, GET_GMESSAGES_SUCCESS, GET_GMESSAGES_FAILURE } from '../constants/ActionTypes';
+import { GET_LASTGMESSAGE_REQUEST, GET_LASTGMESSAGE_SUCCESS, GET_LASTGMESSAGE_FAILURE } from '../constants/ActionTypes';
+import { GET_GENERALMESSAGES_REQUEST, GET_GENERALMESSAGES_SUCCESS, GET_GENERALMESSAGES_FAILURE } from '../constants/ActionTypes';
 
 // for messages
 
@@ -80,19 +81,19 @@ export const getChats = () => {
 
 // for the last message from the general chat
 
-const getGmessagesStarted = () => ({
-    type: GET_GMESSAGES_REQUEST,
+const getLastGmessageStarted = () => ({
+    type: GET_LASTGMESSAGE_REQUEST,
 })
 
 
-const getGmessagesSuccess = (gmessages) => ({
-    type: GET_GMESSAGES_SUCCESS,
+const getLastGmessageSuccess = (gmessages) => ({
+    type: GET_LASTGMESSAGE_SUCCESS,
     payload: gmessages,
 })
 
 
-const getGmessagesFailure = (error) => ({
-    type: GET_GMESSAGES_FAILURE,
+const getLastGmessageFailure = (error) => ({
+    type: GET_LASTGMESSAGE_FAILURE,
     payload: error,
 })
 
@@ -102,10 +103,10 @@ function getTimeFromISOString(timestamp) {
 }
 
 
-export const getGmessages = () => {
+export const getLastGmessage = () => {
     return ((dispatch, getState) => {
-        console.log('gmessages:', getState());
-        dispatch(getGmessagesStarted())
+        console.log('lastgmessage:', getState());
+        dispatch(getLastGmessageStarted())
 
         fetch('https://tt-front.vercel.app/messages', {
                 method: 'GET',
@@ -115,13 +116,47 @@ export const getGmessages = () => {
         })
         .then(response => response.json())
         .then(data => {
-            let gen_messages = data;
-            for (let i = 0; i < gen_messages.length; i++) {
-                gen_messages[i].timestamp = getTimeFromISOString(gen_messages[i].timestamp);
-            } 
-            console.log(data);
-            return dispatch(getGmessagesSuccess(gen_messages));  
+            let message = data.at(-1);
+            message.timestamp = getTimeFromISOString(message.timestamp);
+            dispatch(getLastGmessageSuccess(message));  
         })
-        .catch(error => {dispatch(getGmessagesFailure(error.message))})
+        .catch(error => {dispatch(getLastGmessageFailure(error.message))})
+
+    })
+}
+
+
+const getGeneralMessagesStarted = () => ({
+    type: GET_GENERALMESSAGES_REQUEST,
+})
+
+
+const getGeneralMessagesSuccess = (messages) => ({
+    type: GET_GENERALMESSAGES_SUCCESS,
+    payload: messages,
+})
+
+
+const getGeneralMessagesFailure = (error) => ({
+    type: GET_GENERALMESSAGES_FAILURE,
+    payload: error,
+})
+
+
+export const getGmessages = () => {
+    return ((dispatch, getState) => {
+        console.log('general_messages:', getState());
+        dispatch(getGeneralMessagesStarted())
+
+        fetch('https://tt-front.vercel.app/messages', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+        })
+        .then(response => response.json())
+        .then(data => dispatch(getGeneralMessagesSuccess(data)))
+        .catch(error => dispatch(getGeneralMessagesFailure(error.message)))
+
     })
 }

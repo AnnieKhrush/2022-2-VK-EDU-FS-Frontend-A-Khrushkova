@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import messages from './messages';
 import chats from './chats_list';
-import gmessages from './gmessages';
+import lastgmessage from './last_gmessage';
+import general_messages from './general_messages';
 
 export default combineReducers({
     messages,
     chats,
-    gmessages,
+    lastgmessage,
+    general_messages,
 })

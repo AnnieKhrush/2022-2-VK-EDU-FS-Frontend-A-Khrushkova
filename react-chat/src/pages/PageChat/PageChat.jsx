@@ -8,7 +8,7 @@ import './PageChat.scss';
 import mycat from '../../photos/mycat.jpg';
 import { Button, ChatHead, UserAccount, Form, Messages } from '../../components';
 import { allowNotification } from '../PageChatList/PageChatList';
-import { getMessages, getChats, getGmessages } from '../../actions';
+import { getMessages, getChats, getLastGmessage } from '../../actions';
 
 
 export function PageChat(props) {
@@ -27,10 +27,6 @@ export function PageChat(props) {
     const style = {
         fontSize: '28px'
     }
-
-    const lastgmessage = (props.gmessages).at(-1);
-    console.log('g', props.gmessages);
-    console.log('last', lastgmessage);
 
 
     useEffect(() => {
@@ -51,14 +47,14 @@ export function PageChat(props) {
         const pollItems = () => {
             props.getMessages(params.id);
             props.getChats();
-            props.getGMessages();
+            props.getLastGmessage();
         }
 
         setChatsEarlier(props.chats);
-        setGeneralEarlier(lastgmessage);
+        setGeneralEarlier(props.lastgmessage);
         const time = setInterval(() => pollItems(), 500);
         return () => clearInterval(time);
-    }, [params.id, props, lastgmessage]);
+    }, [params.id, props]);
 
 
     useEffect(() => {
@@ -73,20 +69,20 @@ export function PageChat(props) {
                     notification.close();
                 }
             }
-            if ((lastgmessage.id > generalEarlier.id) && (lastgmessage.author !== 'Anya')) {
+            if ((props.lastgmessage.id > generalEarlier.id) && (props.lastgmessage.author !== 'Anya')) {
                 let notification = new Notification(`New message from 'Общий чат'`,{
-                    body: `${lastgmessage.author}: ${lastgmessage.text}`,
+                    body: `${props.lastgmessage.author}: ${props.lastgmessage.text}`,
                 });
                 notification.close();
             }
             setChatsEarlier(props.chats);
-            setGeneralEarlier(lastgmessage);
+            setGeneralEarlier(props.lastgmessage);
         }
-    }, [chatsEarlier, generalEarlier, lastgmessage, params.id, props])
+    }, [chatsEarlier, generalEarlier, params.id, props])
 
     //console.log('gmess', props.messages);
     //console.log('chats:', props.chats);
-    console.log('last', props.gmessages);
+
 
 
     return (
@@ -121,8 +117,8 @@ export function PageChat(props) {
 const mapStateToProps = (state) => ({
     messages: state.messages.messages,
     chats: state.chats.chats,
-    gmessages: state.gmessages.gmessages,
+    lastgmessage: state.lastgmessage.lastgmessage,
 });
 
 
-export const PageChatConnect = connect(mapStateToProps, { getMessages, getChats, getGmessages } )(PageChat);
+export const PageChatConnect = connect(mapStateToProps, { getMessages, getChats, getLastGmessage } )(PageChat);

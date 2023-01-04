@@ -9,7 +9,7 @@ import { Button } from '../../components';
 import { ChatHead } from '../../components';
 import { Chats } from '../../components';
 import { HeadName } from '../../components';
-import { getChats, getGmessages } from '../../actions';
+import { getChats, getLastGmessage } from '../../actions';
 
 
 export async function allowNotification() {
@@ -34,17 +34,16 @@ export function PageChatList(props) {
     const style = {
         fontSize: '28px'
     }
-    //const lastgmessage = props.gmessages.at(-1);
-    console.log(props.gmessages);
+
 
     useEffect(() => {
         const pollItems = () => {
             props.getChats();
-            props.getGMessages();
+            props.getLastGmessage();
         }
 
         setChatsEarlier(props.chats);
-        setGeneralEarlier(props.gmessages.at(-1));
+        setGeneralEarlier(props.lastgmessage);
         const time = setInterval(() => pollItems(), 1000);
         return () => clearInterval(time);
     }, [props]);
@@ -62,14 +61,14 @@ export function PageChatList(props) {
                     notification.close();
                 }
             }
-            if ((props.gmessages.at(-1).id > generalEarlier.id) && (props.gmessages.at(-1).author !== 'Anya')) {
+            if ((props.lastgmessage.id > generalEarlier.id) && (props.lastgmessage.author !== 'Anya')) {
                 let notification = new Notification(`New message from 'Общий чат'`,{
-                    body: `${props.gmessages.at(-1).author}: ${props.gmessages.at(-1).text}`,
+                    body: `${props.lastgmessage.author}: ${props.lastgmessage.text}`,
                 });
                 notification.close();
             }
             setChatsEarlier(props.chats);
-            setGeneralEarlier(props.gmessages.at(-1));
+            setGeneralEarlier(props.lastgmessage);
         }
     }, [chatsEarlier, generalEarlier, props])
 
@@ -85,7 +84,7 @@ export function PageChatList(props) {
                     <SearchIcon style={style}/>
                 </Button>
             </ChatHead>
-            <Chats chats={props.chats} last_gen_mes={props.gmessages.at(-1)} />
+            <Chats chats={props.chats} last_gen_mes={props.lastgmessage} />
             <div className='create_chat'>
                 <EditIcon style={style} />
             </div>
@@ -95,8 +94,8 @@ export function PageChatList(props) {
 
 const mapStateToProps = (state) => ({
     chats: state.chats.chats,
-    gmessages: state.gmessages.gmessages,
+    lastgmessage: state.lastgmessage.lastgmessage,
 });
 
 
-export const PageChatListConnect = connect(mapStateToProps, { getChats, getGmessages } )(PageChatList);
+export const PageChatListConnect = connect(mapStateToProps, { getChats, getLastGmessage } )(PageChatList);

@@ -5,19 +5,10 @@ import mycat from '../../photos/mycat.jpg';
 
 export function Chats(props) {
 
-    console.log(props.last_gen_mes);
-
-    let last = {};
-
-    if (props.last_gen_mes) {
-        last = {'text': '', 'author': '', 'timestamp': ''}
-    } else {
-        last = props.last_gen_mes;
-    }
     
     return (
         <div className='chats'>
-            <Chat name={'Общий чат'} type={'general'} photo={mycat} last_message={last.text} owner={last.author} time={last.timestamp}/>
+            <Chat name={'Общий чат'} type={'general'} photo={mycat} last_message={props.last_gen_mes.text} owner={props.last_gen_mes.author} time={props.last_gen_mes.timestamp}/>
             
             {
                 props.chats ?

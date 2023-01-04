@@ -1,30 +1,30 @@
-import { GET_GMESSAGES_REQUEST, GET_GMESSAGES_SUCCESS, GET_GMESSAGES_FAILURE } from '../constants/ActionTypes';
+import { GET_LASTGMESSAGE_REQUEST, GET_LASTGMESSAGE_SUCCESS, GET_LASTGMESSAGE_FAILURE } from '../constants/ActionTypes';
 
 
 const initialState = {
     loading: false,
-    gmessages: [],
+    lastgmessage: [],
     error: '',
 }
 
 // eslint-disable-next-line
 export default (state = initialState, action) => {
     switch (action.type) {
-        case GET_GMESSAGES_REQUEST:
+        case GET_LASTGMESSAGE_REQUEST:
             return {
                 ...state,
                 loading: true,
             }
-        case GET_GMESSAGES_SUCCESS:
+        case GET_LASTGMESSAGE_SUCCESS:
             return {
                 loading: false,
-                gmessages: action.payload,
+                lastgmessage: action.payload,
                 error: '',
             }
-        case GET_GMESSAGES_FAILURE:
+        case GET_LASTGMESSAGE_FAILURE:
             return {
                 loading: false,
-                gmessages: state.gmessages,
+                lastgmessage: state.lastgmessage,
                 error: action.payload.error,
             }
     
