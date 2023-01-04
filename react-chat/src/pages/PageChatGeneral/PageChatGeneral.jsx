@@ -1,4 +1,5 @@
 import React, {useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SearchIcon from '@mui/icons-material/Search';
@@ -11,6 +12,7 @@ import { UserAccount } from '../../components';
 import { GeneralForm } from '../../components';
 import { GeneralMessages } from '../../components';
 import { allowNotification } from '../PageChatList/PageChatList';
+import { getChats, getGmessages } from '../../actions';
 
 
 export function PageChatGeneral(props) {
@@ -19,56 +21,35 @@ export function PageChatGeneral(props) {
         fontSize: '28px'
     }
 
-    const [messages, setMessages] = useState([]);
     const [chatsEarlier, setChatsEarlier] = useState([]);
-    const [chats, setChats] = useState([]);
 
 
-    const pollItems = () => {
-    
-        fetch('https://tt-front.vercel.app/messages', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        .then(response => response.json())
-        .then(data => {
-            setMessages(data);
-            console.log(data);
-        })
-
-        fetch('/chats/list/1', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        .then(response => response.json())
-        .then(data => setChats(data))
+    const pollItems = () => {   
+        props.getGmessages();
+        props.getChats();
     }
 
 
     useEffect(() => {
-        setChatsEarlier(chats);
+        setChatsEarlier(props.chats);
         const time = setInterval(() => pollItems(), 500);
-        return () => clearInterval(time);
-    }, [chats]);
+        return () => clearInterval(time); // eslint-disable-next-line
+    }, [props]);
 
 
     useEffect(() => {
         if (allowNotification()) {
             for (let i = 0; i < chatsEarlier.length; i++) {
-                if ((chats[i].chat_messages.length > chatsEarlier[i].chat_messages.length) && (chats[i].last_message.owner !== 'me')) {
-                    let notification = new Notification(`New message from '${chats[i].chat_title}'`,{
-                        body: `${chats[i].last_message.owner}: ${chats[i].last_message.message}`,
+                if ((props.chats[i].chat_messages.length > chatsEarlier[i].chat_messages.length) && (props.chats[i].last_message.owner !== 'me')) {
+                    let notification = new Notification(`New message from '${props.chats[i].chat_title}'`,{
+                        body: `${props.chats[i].last_message.owner}: ${props.chats[i].last_message.message}`,
                     });
                     notification.close();
                 }
             }
-            setChatsEarlier(chats);
+            setChatsEarlier(props.chats);
         }
-    }, [chats, chatsEarlier])
+    }, [props, chatsEarlier])
 
 
     return (
@@ -93,8 +74,17 @@ export function PageChatGeneral(props) {
                     <MoreVertIcon style={style}/>
                 </Button>
             </ChatHead>
-            <GeneralMessages messages={messages} />
+            <GeneralMessages messages={props.messages} />
             <GeneralForm  />
         </div>
     )
 }
+
+
+const mapStateToProps = (state) => ({
+    chats: state.chats.chats,
+    messages: state.general_messages.general_messages,
+});
+
+
+export const PageChatGeneralConnect = connect(mapStateToProps, { getChats, getGmessages } )(PageChatGeneral);

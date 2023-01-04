@@ -1,16 +1,14 @@
 import React, {useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SearchIcon from '@mui/icons-material/Search';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import './PageChat.scss';
 import mycat from '../../photos/mycat.jpg';
-import {Button} from '../../components';
-import {ChatHead} from '../../components';
-import {UserAccount} from '../../components';
-import {Form} from '../../components';
-import {Messages} from '../../components';
+import { Button, ChatHead, UserAccount, Form, Messages } from '../../components';
 import { allowNotification } from '../PageChatList/PageChatList';
+import { getMessages, getChats, getLastGmessage } from '../../actions';
 
 
 export function PageChat(props) {
@@ -18,12 +16,10 @@ export function PageChat(props) {
     const params = useParams();
     console.log(params);
 
-    const [messages, setMessages] = useState([]);
+
     const [info, setInfo] = useState('');
     const [chatsEarlier, setChatsEarlier] = useState([]);
     const [generalEarlier, setGeneralEarlier] = useState({});
-    const [chats, setChats] = useState([]);
-    const [lastgmessage, setLastgmessage] = useState({})
 
 
     const style = {
@@ -47,67 +43,44 @@ export function PageChat(props) {
 
     useEffect(() => {
         const pollItems = () => {
-
-            fetch(`/chats/message/list/${params.id}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
-            .then(response => response.json())
-            .then(data => setMessages(data.reverse()))
-
-            fetch('/chats/list/1', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
-            .then(response => response.json())
-            .then(data => setChats(data))
-    
-            fetch('https://tt-front.vercel.app/messages', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
-            .then(response => response.json())
-            .then(data => {
-                let message = data.at(-1);
-                setLastgmessage(message);  
-            })
+            props.getMessages(params.id);
+            props.getChats();
+            props.getLastGmessage();
         }
 
-        setChatsEarlier(chats);
-        setGeneralEarlier(lastgmessage);
+        setChatsEarlier(props.chats);
+        setGeneralEarlier(props.lastgmessage);
         const time = setInterval(() => pollItems(), 500);
         return () => clearInterval(time);
-    }, [chats, lastgmessage, params.id]);
+    }, [params.id, props]);
 
 
     useEffect(() => {
         if (allowNotification()) {
-            console.log(lastgmessage);
+//            console.log(props.lastgmessage);
             console.log(chatsEarlier);
             for (let i = 0; i < chatsEarlier.length; i++) {
-                if ((chats[i].chat_messages.length > chatsEarlier[i].chat_messages.length) && (chats[i].last_message.owner !== 'me') && (chats[i].id !== Number(params.id))) {
-                    let notification = new Notification(`New message from '${chats[i].chat_title}'`,{
-                        body: `${chats[i].last_message.owner}: ${chats[i].last_message.message}`,
+                if ((props.chats[i].chat_messages.length > chatsEarlier[i].chat_messages.length) && (props.chats[i].last_message.owner !== 'me') && (props.chats[i].id !== Number(params.id))) {
+                    let notification = new Notification(`New message from '${props.chats[i].chat_title}'`,{
+                        body: `${props.chats[i].last_message.owner}: ${props.chats[i].last_message.message}`,
                     });
                     notification.close();
                 }
             }
-            if ((lastgmessage.id > generalEarlier.id) && (lastgmessage.author !== 'Anya')) {
+            if ((props.lastgmessage._id > generalEarlier._id) && (props.lastgmessage.author !== 'Anya')) {
                 let notification = new Notification(`New message from 'Общий чат'`,{
-                    body: `${lastgmessage.author}: ${lastgmessage.text}`,
+                    body: `${props.lastgmessage.author}: ${props.lastgmessage.text}`,
                 });
                 notification.close();
             }
-            setChatsEarlier(chats);
-            setGeneralEarlier(lastgmessage);
+            setChatsEarlier(props.chats);
+            setGeneralEarlier(props.lastgmessage);
         }
-    }, [chats, chatsEarlier, generalEarlier, lastgmessage, params.id])
+    }, [chatsEarlier, generalEarlier, params.id, props])
+
+    //console.log('gmess', props.messages);
+    //console.log('chats:', props.chats);
+
 
 
     return (
@@ -132,8 +105,18 @@ export function PageChat(props) {
                     <MoreVertIcon style={style}/>
                 </Button>
             </ChatHead>
-            <Messages messages={messages}/>
+            <Messages messages={props.messages}/>
             <Form  />
         </div>
     )
 }
+
+
+const mapStateToProps = (state) => ({
+    messages: state.messages.messages,
+    chats: state.chats.chats,
+    lastgmessage: state.lastgmessage.lastgmessage,
+});
+
+
+export const PageChatConnect = connect(mapStateToProps, { getMessages, getChats, getLastGmessage } )(PageChat);
