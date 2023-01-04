@@ -62,7 +62,7 @@ export function PageChatList(props) {
                 }
             }
             if ((props.lastgmessage._id > generalEarlier._id
-                ) && (props.lastgmessage.author !== '')) {
+                ) && (props.lastgmessage.author !== 'Anya')) {
                 let notification = new Notification(`New message from 'Общий чат'`,{
                     body: `${props.lastgmessage.author}: ${props.lastgmessage.text}`,
                 });
