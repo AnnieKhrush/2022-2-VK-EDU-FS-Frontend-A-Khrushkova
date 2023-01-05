@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import EditIcon from '@mui/icons-material/Edit';
+import LogoutIcon from '@mui/icons-material/Logout';
 import './PageChatList.scss';
 //import mycat from '../../photos/mycat.jpg';
 import { Button } from '../../components';
@@ -32,6 +34,9 @@ export function PageChatList(props) {
     const style = {
         fontSize: '28px'
     }
+
+    const params = useParams();
+    console.log(params);
 
 
     useEffect(() => {
@@ -81,6 +86,9 @@ export function PageChatList(props) {
                 <HeadName name={'Messenger'} />
                 <Button>
                     <SearchIcon style={style}/>
+                </Button>
+                <Button>
+                    <LogoutIcon style={style} onClick={() => window.location.replace('http://localhost:8000/logout') } />
                 </Button>
             </ChatHead>
             <Chats chats={props.chats} last_gen_mes={props.lastgmessage} />

@@ -4,7 +4,8 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 import { PageChatConnect } from './pages';
 import { PageChatListConnect } from './pages';
 import { PageUserEdit } from './pages';
-import { PageChatGeneralConnect } from './pages/PageChatGeneral';
+import { PageChatGeneralConnect } from './pages';
+import { PageAuth } from './pages';
 
 
 class App extends React.Component {
@@ -15,6 +16,7 @@ class App extends React.Component {
     return (
       <HashRouter>
         <Routes>
+          <Route path='/login' element={<PageAuth />} style={{backgroundColor: '#8E24AA'}} />
           <Route path='/' element={<PageChatListConnect />} />
           <Route path='/chat/:id' element={<PageChatConnect />} style={{backgroundColor: '#F8F8F8'}} />
           <Route path='/chat/general' element={<PageChatGeneralConnect />} style={{backgroundColor: '#F8F8F8'}} />
