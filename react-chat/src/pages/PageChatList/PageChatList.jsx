@@ -35,9 +35,6 @@ export function PageChatList(props) {
         fontSize: '28px'
     }
 
-    const params = useParams();
-    console.log(params);
-
 
     useEffect(() => {
         const pollItems = () => {
@@ -75,6 +72,12 @@ export function PageChatList(props) {
             setGeneralEarlier(props.lastgmessage);
         }
     }, [chatsEarlier, generalEarlier, props])
+
+
+    function checkUser(user) {
+        let id = user.getAuthResponse().id_token;
+        console.log(id);
+    }
 
 
     return (

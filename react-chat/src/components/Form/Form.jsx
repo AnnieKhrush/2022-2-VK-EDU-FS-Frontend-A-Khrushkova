@@ -29,6 +29,24 @@ export function Form(props) {
 
 
     function newMessage(text) {
+
+        function getCookie(name) {
+            if (!document.cookie) {
+              return null;
+            }
+            const token = document.cookie.split(';')
+              .map(c => c.trim())
+              .filter(c => c.startsWith(name + '='));
+        
+            if (token.length === 0) {
+              return null;
+            }
+            return decodeURIComponent(token[0].split('=')[1]);
+          }
+        
+        const csrftoken = getCookie('csrftoken')
+        console.log(csrftoken)
+
         let newMessage = {
             message: text,
             message_in_chat: params.id
@@ -37,6 +55,9 @@ export function Form(props) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Cross-Origin-Resource-Policy': 'cross-origin',
+                'X-CSRFToken': csrftoken
             },
             body: JSON.stringify(newMessage),
         })

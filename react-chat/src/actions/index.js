@@ -67,7 +67,7 @@ export const getChats = () => {
         console.log('state_chats:', getState());
         dispatch(getChatsStarted())
 
-        fetch(`/chats/list/${1}`, {
+        fetch(`/chats/list/${3}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
