@@ -67,14 +67,14 @@ export const getChats = () => {
         console.log('state_chats:', getState());
         dispatch(getChatsStarted())
 
-        fetch(`/chats/list/${3}`, {
+        fetch(`/chats/list/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
         })
         .then(response => response.json())
-        .then(data => dispatch(getChatsSuccess(data)))
+        .then(data => dispatch(getChatsSuccess(data.chats)))
         .catch(error => {dispatch(getChatsFailure(error.message))})
     })
 }

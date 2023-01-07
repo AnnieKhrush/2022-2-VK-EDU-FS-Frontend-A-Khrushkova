@@ -30,7 +30,7 @@ export function Form(props) {
 
     function newMessage(text) {
 
-        function getCookie(name) {
+        function getCSRFCookie(name) {
             if (!document.cookie) {
               return null;
             }
@@ -44,7 +44,7 @@ export function Form(props) {
             return decodeURIComponent(token[0].split('=')[1]);
           }
         
-        const csrftoken = getCookie('csrftoken')
+        const csrftoken = getCSRFCookie('csrftoken')
         console.log(csrftoken)
 
         let newMessage = {
