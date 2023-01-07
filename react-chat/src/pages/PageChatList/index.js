@@ -1,1 +1,1 @@
-export {PageChatListConnect} from './PageChatList';
+export { PageChatListConnect } from './PageChatList';

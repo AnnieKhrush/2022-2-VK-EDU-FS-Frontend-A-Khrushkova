@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import EditIcon from '@mui/icons-material/Edit';
+import LogoutIcon from '@mui/icons-material/Logout';
 import './PageChatList.scss';
 //import mycat from '../../photos/mycat.jpg';
 import { Button } from '../../components';
@@ -22,24 +23,25 @@ export async function allowNotification() {
 }
 
 
+
 export function PageChatList(props) {
 
 
     const [chatsEarlier, setChatsEarlier] = useState([]);
     const [generalEarlier, setGeneralEarlier] = useState({});
 
-
+ 
     const style = {
         fontSize: '28px'
     }
 
+    //const navigate = useNavigate();
 
     useEffect(() => {
         const pollItems = () => {
             props.getChats();
             props.getLastGmessage();
         }
-
         setChatsEarlier(props.chats);
         setGeneralEarlier(props.lastgmessage);
         const time = setInterval(() => pollItems(), 1000);
@@ -71,7 +73,7 @@ export function PageChatList(props) {
         }
     }, [chatsEarlier, generalEarlier, props])
 
-
+     
     return (
         <div className='chats_list'>
             <ChatHead>
@@ -82,11 +84,14 @@ export function PageChatList(props) {
                 <Button>
                     <SearchIcon style={style}/>
                 </Button>
+                <Button>
+                    <LogoutIcon style={style} onClick={() => {window.location.replace('http://localhost:8000/logout'); localStorage.clear() } } />
+                </Button>
             </ChatHead>
             <Chats chats={props.chats} last_gen_mes={props.lastgmessage} />
-            <div className='create_chat'>
-                <EditIcon style={style} />
-            </div>
+                <div className='create_chat'>
+                    <EditIcon style={style} />
+                </div>
         </div>
     )
 }

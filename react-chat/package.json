@@ -1,5 +1,5 @@
 {
-  "proxy": "http://localhost:8000/",
+  "proxy": "http://localhost:8000",
   "homepage": "https://anniekhrush.github.io/2022-2-VK-EDU-FS-Frontend-A-Khrushkova",
   "name": "react-chat",
   "version": "0.1.0",
