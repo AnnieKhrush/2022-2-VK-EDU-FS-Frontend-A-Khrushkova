@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/2022-2-VK-EDU-FS-Frontend-A-Khrushkova/static/css/main.cbf8b14f.css",
-    "main.js": "/2022-2-VK-EDU-FS-Frontend-A-Khrushkova/static/js/main.d276166c.js",
+    "main.js": "/2022-2-VK-EDU-FS-Frontend-A-Khrushkova/static/js/main.80efdfc3.js",
     "static/js/496.6ae78188.chunk.js": "/2022-2-VK-EDU-FS-Frontend-A-Khrushkova/static/js/496.6ae78188.chunk.js",
     "static/media/mycat.jpg": "/2022-2-VK-EDU-FS-Frontend-A-Khrushkova/static/media/mycat.dcbf08bf418679f65325.jpg",
     "index.html": "/2022-2-VK-EDU-FS-Frontend-A-Khrushkova/index.html",
     "main.cbf8b14f.css.map": "/2022-2-VK-EDU-FS-Frontend-A-Khrushkova/static/css/main.cbf8b14f.css.map",
-    "main.d276166c.js.map": "/2022-2-VK-EDU-FS-Frontend-A-Khrushkova/static/js/main.d276166c.js.map",
+    "main.80efdfc3.js.map": "/2022-2-VK-EDU-FS-Frontend-A-Khrushkova/static/js/main.80efdfc3.js.map",
     "496.6ae78188.chunk.js.map": "/2022-2-VK-EDU-FS-Frontend-A-Khrushkova/static/js/496.6ae78188.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.cbf8b14f.css",
-    "static/js/main.d276166c.js"
+    "static/js/main.80efdfc3.js"
   ]
 }
